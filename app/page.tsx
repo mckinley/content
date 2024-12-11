@@ -1,6 +1,10 @@
+import keystaticConfig from "@/keystatic.config";
+import { createReader } from "@keystatic/core/reader";
 import { allPosts, Post } from "contentlayer/generated";
 import { compareDesc, format, parseISO } from "date-fns";
 import Link from "next/link";
+
+const reader = createReader(process.cwd(), keystaticConfig);
 
 function PostCard(post: Post) {
   return (
@@ -24,18 +28,25 @@ function PostCard(post: Post) {
   );
 }
 
-export default function Home() {
-  const posts = allPosts.sort((a, b) =>
+export default async function Home() {
+  const contentLayerPosts = allPosts.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
   );
 
+  const keystaticPosts = await reader.collections.posts.all();
+
   return (
     <div className="mx-auto max-w-xl py-8">
-      <h1 className="mb-8 text-center text-2xl font-black">
-        Next.js + Contentlayer Example
-      </h1>
-      {posts.map((post, idx) => (
+      <h1 className="mb-8 text-center text-2xl font-black">Content Examples</h1>
+      <h2>Contentlayer</h2>
+      {contentLayerPosts.map((post, idx) => (
         <PostCard key={idx} {...post} />
+      ))}
+      <h2>Keystatic</h2>
+      {keystaticPosts.map((post) => (
+        <div key={post.slug}>
+          <h2>{post.entry.title}</h2>
+        </div>
       ))}
     </div>
   );
