@@ -15,4 +15,7 @@ export const Post = defineDocumentType(() => ({
   },
 }));
 
-export default makeSource({ contentDirPath: "content/contentlayer", documentTypes: [Post] });
+export default makeSource({
+  contentDirPath: "content/contentlayer",
+  documentTypes: [Post],
+});
