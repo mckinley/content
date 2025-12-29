@@ -26,15 +26,15 @@ Install Velite and configure your collections:
 export default defineConfig({
   collections: {
     posts: {
-      pattern: 'posts/**/*.md',
+      pattern: "posts/**/*.md",
       schema: s.object({
         title: s.string(),
         date: s.isodate(),
         content: s.markdown(),
-      })
-    }
-  }
-})
+      }),
+    },
+  },
+});
 ```
 
 ## Image Handling

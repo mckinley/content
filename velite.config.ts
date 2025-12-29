@@ -7,7 +7,7 @@ import { VFile } from "vfile";
 function metadata(vfile: VFile) {
   const metaFilePath = path.join(
     path.dirname(vfile.path),
-    `${path.basename(vfile.path, path.extname(vfile.path))}.meta.json`
+    `${path.basename(vfile.path, path.extname(vfile.path))}.meta.json`,
   );
 
   if (fs.existsSync(metaFilePath)) {

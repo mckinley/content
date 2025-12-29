@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
   } catch {
     return NextResponse.json(
       { error: "Failed to save article" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -4,12 +4,12 @@ A Next.js 15 project demonstrating four different content management approaches,
 
 ## Content Systems Compared
 
-| System | Format | Admin UI | Type Safety | Best For |
-|--------|--------|----------|-------------|----------|
-| **Contentlayer** | Markdown/MDX | No | Excellent | Developer blogs, documentation |
-| **Keystatic** | Markdoc | Yes | Good | Team content editing |
-| **Velite** | Markdown | No | Good | Custom transformations |
-| **EditorJS** | JSON | External | Manual | Headless CMS integrations |
+| System           | Format       | Admin UI | Type Safety | Best For                       |
+| ---------------- | ------------ | -------- | ----------- | ------------------------------ |
+| **Contentlayer** | Markdown/MDX | No       | Excellent   | Developer blogs, documentation |
+| **Keystatic**    | Markdoc      | Yes      | Good        | Team content editing           |
+| **Velite**       | Markdown     | No       | Good        | Custom transformations         |
+| **EditorJS**     | JSON         | External | Manual      | Headless CMS integrations      |
 
 ## Quick Start
 
@@ -75,19 +75,20 @@ Keystatic provides a visual interface for content editing without touching code.
 **Config:** `contentlayer.config.ts`
 
 Features demonstrated:
+
 - Type-safe content access via generated TypeScript types
 - Computed fields (URL, slug, reading time, word count)
 - Date parsing and formatting
 - Markdown to HTML conversion
 
 ```typescript
-import { allPosts, Post } from 'contentlayer/generated';
+import { allPosts, Post } from "contentlayer/generated";
 
 // Fully typed - IDE autocomplete works!
 const post: Post = allPosts[0];
-console.log(post.title);       // string
+console.log(post.title); // string
 console.log(post.readingTime); // number (computed)
-console.log(post.url);         // string (computed)
+console.log(post.url); // string (computed)
 ```
 
 ### Keystatic
@@ -95,6 +96,7 @@ console.log(post.url);         // string (computed)
 **Config:** `keystatic.config.ts`
 
 Features demonstrated:
+
 - Visual admin interface at `/keystatic`
 - Git-backed local storage
 - Markdoc format with component support
@@ -106,6 +108,7 @@ Features demonstrated:
 **Config:** `velite.config.ts`
 
 Features demonstrated:
+
 - Custom EditorJS loader using `defineLoader`
 - Image processing with blur placeholders
 - Metadata extraction (word count, reading time)
@@ -118,6 +121,7 @@ Features demonstrated:
 **Files:** `*.editorjs` + `*.meta.json`
 
 Features demonstrated:
+
 - Block-based JSON content structure
 - Custom Velite loader using `editorjs-html`
 - Companion metadata files for extended fields

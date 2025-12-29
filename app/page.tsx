@@ -8,7 +8,7 @@ import { posts as velitePosts, articles as veliteArticles } from "@/.velite";
 
 // Data fetching
 const contentLayerPosts = allPosts.sort((a, b) =>
-  compareDesc(new Date(a.date), new Date(b.date))
+  compareDesc(new Date(a.date), new Date(b.date)),
 );
 
 const reader = createReader(process.cwd(), keystaticConfig);
@@ -230,7 +230,10 @@ export default async function Home() {
             <a href="#editorjs" className="text-gray-600 hover:text-gray-900">
               EditorJS
             </a>
-            <a href="#contentlayer" className="text-gray-600 hover:text-gray-900">
+            <a
+              href="#contentlayer"
+              className="text-gray-600 hover:text-gray-900"
+            >
               Contentlayer
             </a>
             <a href="#keystatic" className="text-gray-600 hover:text-gray-900">
@@ -258,7 +261,11 @@ export default async function Home() {
             <ArticleCard
               key={post.slug}
               title={post.title}
-              date={post.date ? format(parseISO(post.date), "MMM d, yyyy") : undefined}
+              date={
+                post.date
+                  ? format(parseISO(post.date), "MMM d, yyyy")
+                  : undefined
+              }
               description={post.description}
               author={post.author}
               cover={post.cover}

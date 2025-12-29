@@ -16,10 +16,10 @@ Enable MDX in your document type:
 
 ```typescript
 defineDocumentType(() => ({
-  name: 'Post',
-  contentType: 'mdx',
+  name: "Post",
+  contentType: "mdx",
   // ...
-}))
+}));
 ```
 
 ## Custom Components
@@ -29,9 +29,7 @@ Pass components to the MDX renderer:
 ```tsx
 <MDXContent
   components={{
-    Callout: ({ children }) => (
-      <div className="callout">{children}</div>
-    )
+    Callout: ({ children }) => <div className="callout">{children}</div>,
   }}
 />
 ```
@@ -48,7 +46,7 @@ Code blocks automatically support syntax highlighting:
 
 ```javascript
 function greet(name) {
-  return `Hello, ${name}!`
+  return `Hello, ${name}!`;
 }
 ```
 

@@ -4,7 +4,14 @@ import path from "path";
 
 class VeliteWebpackPlugin {
   static started = false;
-  apply(compiler: { options: { mode: string }; hooks: { beforeCompile: { tapPromise: (name: string, fn: () => Promise<void>) => void } } }) {
+  apply(compiler: {
+    options: { mode: string };
+    hooks: {
+      beforeCompile: {
+        tapPromise: (name: string, fn: () => Promise<void>) => void;
+      };
+    };
+  }) {
     compiler.hooks.beforeCompile.tapPromise("VeliteWebpackPlugin", async () => {
       if (VeliteWebpackPlugin.started) return;
       VeliteWebpackPlugin.started = true;

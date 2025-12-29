@@ -40,7 +40,7 @@ import Image from "next/image";
   height={post.cover.height}
   placeholder="blur"
   blurDataURL={post.cover.blurDataURL}
-/>
+/>;
 ```
 
 ## Benefits
@@ -55,7 +55,7 @@ import Image from "next/image";
 Velite also extracts reading time and word count from markdown:
 
 ```typescript
-metadata: s.metadata()  // { readingTime: 2, wordCount: 450 }
+metadata: s.metadata(); // { readingTime: 2, wordCount: 450 }
 ```
 
 This makes it easy to display "5 min read" without manual calculation.

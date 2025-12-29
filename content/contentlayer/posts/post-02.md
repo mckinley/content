@@ -12,13 +12,13 @@ Schemas define the structure of your content. Each field has a type and can be r
 
 ## Available Field Types
 
-| Type | Description | Example |
-|------|-------------|---------|
-| `string` | Text content | `"Hello World"` |
-| `date` | ISO date | `2024-12-21` |
-| `boolean` | True/false | `true` |
-| `number` | Numeric value | `42` |
-| `list` | Array of values | `["a", "b"]` |
+| Type      | Description     | Example         |
+| --------- | --------------- | --------------- |
+| `string`  | Text content    | `"Hello World"` |
+| `date`    | ISO date        | `2024-12-21`    |
+| `boolean` | True/false      | `true`          |
+| `number`  | Numeric value   | `42`            |
+| `list`    | Array of values | `["a", "b"]`    |
 
 ## Field Options
 

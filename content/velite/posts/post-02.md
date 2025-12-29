@@ -17,10 +17,10 @@ Velite allows you to define custom loaders for any file format. This demo uses a
 const customLoader = defineLoader({
   test: /\.custom$/,
   load: (vfile) => {
-    const data = parseCustomFormat(vfile.toString())
-    return { data }
-  }
-})
+    const data = parseCustomFormat(vfile.toString());
+    return { data };
+  },
+});
 ```
 
 ## Loader Components
