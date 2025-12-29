@@ -1,12 +1,12 @@
 {
-  "title": "Hello World - EditorJS Demo",
-  "slug": "hello-world",
-  "description": "A demonstration of EditorJS block-based content",
+  "title": "Understanding EditorJS Block Format",
+  "slug": "editorjs-blocks",
+  "description": "A deep dive into how EditorJS structures content as JSON blocks",
   "author": "Demo Author",
-  "array": ["editorjs", "velite", "demo"],
-  "date": "2024-12-26T10:00:00.000Z",
+  "array": ["blocks", "json", "html", "velite"],
+  "date": "2024-12-27T10:00:00.000Z",
   "object": {
-    "key": "demo-value"
+    "key": "editorjs-advanced"
   },
   "cover": {
     "src": "/static/cover-6ecc40c2.jpeg",

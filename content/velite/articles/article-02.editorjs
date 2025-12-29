@@ -1,0 +1,65 @@
+{
+  "time": 1735200000000,
+  "blocks": [
+    {
+      "id": "intro1",
+      "type": "paragraph",
+      "data": {
+        "text": "EditorJS stores content as structured JSON blocks, making it ideal for headless CMS architectures and flexible content rendering."
+      }
+    },
+    {
+      "id": "heading1",
+      "type": "header",
+      "data": {
+        "text": "Block-Based Content Structure",
+        "level": 2
+      }
+    },
+    {
+      "id": "para2",
+      "type": "paragraph",
+      "data": {
+        "text": "Each block has a type, unique ID, and data payload. This makes content highly portable and transformable across different rendering contexts."
+      }
+    },
+    {
+      "id": "code1",
+      "type": "code",
+      "data": {
+        "code": "const block = {\n  id: \"unique-id\",\n  type: \"paragraph\",\n  data: { text: \"Hello World\" }\n};"
+      }
+    },
+    {
+      "id": "heading2",
+      "type": "header",
+      "data": {
+        "text": "Custom Velite Loader",
+        "level": 2
+      }
+    },
+    {
+      "id": "para3",
+      "type": "paragraph",
+      "data": {
+        "text": "This project uses a custom Velite loader that converts EditorJS JSON to HTML using the editorjs-html library. The loader also reads companion .meta.json files for extended metadata."
+      }
+    },
+    {
+      "id": "heading3",
+      "type": "header",
+      "data": {
+        "text": "Supported Block Types",
+        "level": 2
+      }
+    },
+    {
+      "id": "para4",
+      "type": "paragraph",
+      "data": {
+        "text": "The editorjs-html parser supports: paragraph, header (H1-H6), lists, nested lists, images, delimiters, quotes, code blocks, and embeds."
+      }
+    }
+  ],
+  "version": "2.30.7"
+}
