@@ -1,0 +1,30 @@
+---
+title: Velite Features Overview
+slug: features
+description: An overview of velite's key capabilities
+---
+
+# Velite Features
+
+Velite is a powerful content layer that transforms your content into type-safe data.
+
+## Key Capabilities
+
+- **Custom Loaders** - Support any file format (JSON5, HTML, EditorJS, etc.)
+- **Type Safety** - Full TypeScript support with generated types
+- **Image Processing** - Automatic optimization with blur placeholders
+- **MDX Support** - Compile MDX to executable code
+
+## Why Velite?
+
+Velite provides a flexible schema system that lets you define exactly how your content should be structured and transformed.
+
+```typescript
+schema: s.object({
+  title: s.string(),
+  content: s.markdown(),
+  cover: s.image(),
+})
+```
+
+This ensures your content is always valid and properly typed.

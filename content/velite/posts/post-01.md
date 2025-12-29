@@ -5,6 +5,7 @@ description: A modern content layer for Next.js with powerful transformation cap
 author: Demo Author
 tags: ["velite", "introduction", "next.js"]
 cover: ../files/cover.jpeg
+parentSlug: null
 ---
 
 # What is Velite?

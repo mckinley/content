@@ -5,6 +5,7 @@ description: "How Velite automatically optimizes images with blur placeholders"
 author: "Demo Author"
 tags: ["velite", "images", "optimization", "next.js"]
 cover: ../files/cover.jpeg
+parentSlug: null
 ---
 
 # Automatic Image Optimization

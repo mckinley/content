@@ -5,6 +5,7 @@ description: Building custom file loaders for non-standard content formats
 author: Demo Author
 tags: ["velite", "loaders", "customization"]
 cover: ../files/cover.jpeg
+parentSlug: posts/post-01
 ---
 
 # Custom Content Loaders

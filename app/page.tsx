@@ -4,7 +4,13 @@ import { allPosts } from "contentlayer/generated";
 import { compareDesc, format, parseISO } from "date-fns";
 import Link from "next/link";
 import Image from "next/image";
-import { posts as velitePosts, articles as veliteArticles } from "@/.velite";
+import {
+  posts as velitePosts,
+  articles as veliteArticles,
+  siteConfig,
+  pages as velitePages,
+  htmlPages,
+} from "@/.velite";
 
 // Data fetching
 const contentLayerPosts = allPosts.sort((a, b) =>
@@ -225,12 +231,15 @@ export default async function Home() {
       {/* Table of Contents */}
       <nav className="border-b border-gray-100 bg-gray-50">
         <div className="max-w-3xl mx-auto px-4 py-3">
-          <div className="flex gap-4 text-sm">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
             <a href="#velite" className="text-gray-600 hover:text-gray-900">
-              Velite
+              Velite Posts
             </a>
             <a href="#editorjs" className="text-gray-600 hover:text-gray-900">
               EditorJS
+            </a>
+            <a href="#velite-advanced" className="text-gray-600 hover:text-gray-900">
+              Advanced Velite
             </a>
             <a
               href="#contentlayer"
@@ -310,6 +319,122 @@ export default async function Home() {
               }}
             />
           ))}
+        </Section>
+
+        {/* Advanced Velite Features */}
+        <Section
+          id="velite-advanced"
+          title="Advanced Velite Features"
+          description="Custom loaders, single-file collections, and parent-child relationships"
+          features={[
+            "JSON5 Loader",
+            "HTML Loader",
+            "Single Collection",
+            "MDX Compilation",
+            "Parent-Child",
+          ]}
+        >
+          {/* Site Config - Single File Collection */}
+          <div className="p-4 border border-gray-200 rounded-lg">
+            <h3 className="font-medium">Site Configuration</h3>
+            <p className="text-sm text-gray-500 mt-1">
+              Single-file collection from JSON5 with comments
+            </p>
+            <div className="mt-3 bg-gray-50 p-3 rounded text-sm font-mono">
+              <div>
+                <span className="text-gray-500">name:</span> {siteConfig.name}
+              </div>
+              <div>
+                <span className="text-gray-500">version:</span>{" "}
+                {siteConfig.version}
+              </div>
+              {siteConfig.description && (
+                <div>
+                  <span className="text-gray-500">description:</span>{" "}
+                  {siteConfig.description}
+                </div>
+              )}
+              <div>
+                <span className="text-gray-500">features:</span>{" "}
+                {siteConfig.features.join(", ")}
+              </div>
+            </div>
+          </div>
+
+          {/* MDX Pages */}
+          {velitePages.map((page) => (
+            <article
+              key={page.slug}
+              className="p-4 border border-gray-200 rounded-lg"
+            >
+              <div className="flex justify-between items-start">
+                <h3 className="font-medium">{page.title}</h3>
+                <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
+                  MDX
+                </span>
+              </div>
+              {page.description && (
+                <p className="text-gray-600 text-sm mt-1">{page.description}</p>
+              )}
+              <details className="mt-3">
+                <summary className="cursor-pointer text-xs text-gray-400 hover:text-gray-600 uppercase tracking-wide">
+                  Compiled MDX Code
+                </summary>
+                <pre className="mt-2 text-xs bg-gray-50 p-3 rounded overflow-auto max-h-32 font-mono">
+                  {page.code.substring(0, 500)}...
+                </pre>
+              </details>
+            </article>
+          ))}
+
+          {/* HTML Pages */}
+          {htmlPages.map((page) => (
+            <article
+              key={page.slug}
+              className="p-4 border border-gray-200 rounded-lg"
+            >
+              <div className="flex justify-between items-start">
+                <h3 className="font-medium">{page.title}</h3>
+                <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
+                  HTML
+                </span>
+              </div>
+              <div
+                className="prose prose-sm prose-gray max-w-none mt-3"
+                dangerouslySetInnerHTML={{ __html: page.content }}
+                suppressHydrationWarning
+              />
+            </article>
+          ))}
+
+          {/* Parent-Child Relationships */}
+          <div className="p-4 border border-gray-200 rounded-lg">
+            <h3 className="font-medium">Parent-Child Relationships</h3>
+            <p className="text-sm text-gray-500 mt-1">
+              Posts can reference parent posts via parentSlug
+            </p>
+            <div className="mt-3 space-y-2">
+              {velitePosts.map((post) => (
+                <div key={post.slug} className="text-sm flex items-center gap-2">
+                  {post.parentSlug ? (
+                    <>
+                      <span className="text-gray-400">└─</span>
+                      <span>{post.title}</span>
+                      <span className="text-xs text-gray-400">
+                        (child of {post.parentSlug})
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-gray-600">●</span>
+                      <span className="font-medium">{post.title}</span>
+                      <span className="text-xs text-gray-400">(root)</span>
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         </Section>
 
         {/* Contentlayer */}
