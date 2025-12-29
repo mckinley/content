@@ -6,13 +6,13 @@ import Link from "next/link";
 import Image from "next/image";
 
 const contentLayerPosts = allPosts.sort((a, b) =>
-  compareDesc(new Date(a.date), new Date(b.date)),
+  compareDesc(new Date(a.date), new Date(b.date))
 );
 
 const reader = createReader(process.cwd(), keystaticConfig);
 const keystaticPosts = await reader.collections.posts.all();
-
 import { posts as velitePosts } from "@/.velite";
+import { articles as veliteArticles } from "@/.velite";
 
 function PostCard(post: Post) {
   return (
@@ -61,6 +61,14 @@ export default async function Home() {
           {post.content && (
             <div dangerouslySetInnerHTML={{ __html: post.content }} />
           )}
+        </div>
+      ))}
+      {veliteArticles.map((article, i) => (
+        <div key={i}>
+          <div dangerouslySetInnerHTML={{ __html: article.content }} />
+          <pre>
+            <code>{JSON.stringify(article, null, 2)}</code>
+          </pre>
         </div>
       ))}
     </div>
