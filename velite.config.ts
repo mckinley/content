@@ -39,9 +39,14 @@ export default defineConfig({
           title: s.string().max(99),
           slug: s.path(),
           date: s.isodate().optional(),
+          description: s.string().optional(),
+          author: s.string().optional(),
+          tags: s.array(s.string()).optional(),
           cover: s.image().optional(),
           metadata: s.metadata(),
           content: s.markdown(),
+          excerpt: s.excerpt(),
+          toc: s.toc(),
         })
         .transform((data) => ({ ...data, permalink: `/velite/${data.slug}` })),
     },
@@ -51,6 +56,9 @@ export default defineConfig({
       schema: s.object({
         content: s.string(),
         title: s.string(),
+        slug: s.slug("articles"),
+        description: s.string().optional(),
+        author: s.string().optional(),
         array: s.array(s.string()),
         date: s.isodate(),
         object: s.object({
