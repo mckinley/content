@@ -172,9 +172,11 @@ function ArticleCard({
           )}
         </div>
       </div>
+      {/* suppressHydrationWarning: velite watch mode can cause timing differences between server render and client hydration in dev */}
       <div
         className="prose prose-sm prose-gray max-w-none mt-4 pt-4 border-t border-gray-100"
         dangerouslySetInnerHTML={{ __html: content }}
+        suppressHydrationWarning
       />
       {rawData && (
         <details className="mt-4 pt-4 border-t border-gray-100">
