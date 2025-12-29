@@ -1,10 +1,13 @@
+import { parse as csvParse } from "csv-parse/sync";
 import edjsHTML from "editorjs-html";
 import fs from "fs";
 import { JSDOM } from "jsdom";
 import JSON5 from "json5";
 import path from "path";
+import toml from "toml";
 import { defineConfig, defineLoader, s } from "velite";
 import { VFile } from "vfile";
+import yaml from "yaml";
 
 function metadata(vfile: VFile) {
   const metaFilePath = path.join(
@@ -51,9 +54,60 @@ const htmlLoader = defineLoader({
   },
 });
 
+// YAML loader - pure YAML data files (no frontmatter, just data)
+const yamlLoader = defineLoader({
+  test: /\.yaml$/,
+  load: (vfile) => {
+    const data = yaml.parse(vfile.toString());
+    return { data };
+  },
+});
+
+// CSV loader - tabular data with headers
+const csvLoader = defineLoader({
+  test: /\.csv$/,
+  load: (vfile) => {
+    const records = csvParse(vfile.toString(), {
+      columns: true, // Use first row as headers
+      skip_empty_lines: true,
+      trim: true,
+    });
+    return { data: { rows: records } };
+  },
+});
+
+// TOML loader - popular in Hugo/Rust ecosystems
+const tomlLoader = defineLoader({
+  test: /\.toml$/,
+  load: (vfile) => {
+    const data = toml.parse(vfile.toString());
+    return { data };
+  },
+});
+
+// Helper to extract date from Jekyll-style filenames (YYYY-MM-DD-slug.md)
+function extractDateFromFilename(filepath: string): {
+  date: string | null;
+  slug: string;
+} {
+  const basename = path.basename(filepath, path.extname(filepath));
+  const match = basename.match(/^(\d{4}-\d{2}-\d{2})-(.+)$/);
+  if (match) {
+    return { date: match[1], slug: match[2] };
+  }
+  return { date: null, slug: basename };
+}
+
 export default defineConfig({
   root: "content/velite",
-  loaders: [editorjsLoader, json5Loader, htmlLoader],
+  loaders: [
+    editorjsLoader,
+    json5Loader,
+    htmlLoader,
+    yamlLoader,
+    csvLoader,
+    tomlLoader,
+  ],
   collections: {
     posts: {
       name: "Post",
@@ -124,6 +178,139 @@ export default defineConfig({
         slug: s.slug("html"),
         content: s.string(),
       }),
+    },
+
+    // ===== DATA FORMAT DEMOS =====
+
+    // YAML data collection - team members (common pattern for structured data)
+    team: {
+      name: "TeamMember",
+      pattern: "data/team.yaml",
+      single: true,
+      schema: s.object({
+        members: s.array(
+          s.object({
+            name: s.string(),
+            role: s.string(),
+            bio: s.string().optional(),
+            avatar: s.string().optional(),
+            social: s
+              .object({
+                twitter: s.string().optional(),
+                github: s.string().optional(),
+                linkedin: s.string().optional(),
+              })
+              .optional(),
+          }),
+        ),
+      }),
+    },
+
+    // YAML navigation - common pattern for site navigation
+    navigation: {
+      name: "Navigation",
+      pattern: "data/navigation.yaml",
+      single: true,
+      schema: s.object({
+        main: s.array(
+          s.object({
+            label: s.string(),
+            href: s.string(),
+            children: s
+              .array(
+                s.object({
+                  label: s.string(),
+                  href: s.string(),
+                }),
+              )
+              .optional(),
+          }),
+        ),
+        footer: s.array(
+          s.object({
+            label: s.string(),
+            href: s.string(),
+          }),
+        ),
+      }),
+    },
+
+    // CSV data - products/pricing table (spreadsheet-like data)
+    products: {
+      name: "Products",
+      pattern: "data/products.csv",
+      single: true,
+      schema: s.object({
+        rows: s.array(
+          s.object({
+            id: s.string(),
+            name: s.string(),
+            price: s.string(),
+            category: s.string(),
+            inStock: s.string(),
+          }),
+        ),
+      }),
+    },
+
+    // TOML config - Hugo-style configuration
+    hugoConfig: {
+      name: "HugoConfig",
+      pattern: "data/hugo.toml",
+      single: true,
+      schema: s.object({
+        baseURL: s.string(),
+        title: s.string(),
+        languageCode: s.string(),
+        theme: s.string().optional(),
+        params: s
+          .object({
+            description: s.string().optional(),
+            author: s.string().optional(),
+            showReadingTime: s.boolean().optional(),
+          })
+          .optional(),
+        menu: s
+          .object({
+            main: s
+              .array(
+                s.object({
+                  name: s.string(),
+                  url: s.string(),
+                  weight: s.number().optional(),
+                }),
+              )
+              .optional(),
+          })
+          .optional(),
+      }),
+    },
+
+    // Jekyll-style posts - date in filename (YYYY-MM-DD-slug.md)
+    jekyllPosts: {
+      name: "JekyllPost",
+      pattern: "jekyll-posts/*.md",
+      schema: s
+        .object({
+          title: s.string(),
+          layout: s.string().optional(),
+          categories: s.array(s.string()).optional(),
+          tags: s.array(s.string()).optional(),
+          content: s.markdown(),
+          excerpt: s.excerpt(),
+          // Raw path for date extraction
+          rawPath: s.path(),
+        })
+        .transform((data, { meta }) => {
+          // Extract date from filename (Jekyll convention)
+          const { date, slug } = extractDateFromFilename(meta.path as string);
+          return {
+            ...data,
+            slug,
+            date,
+            permalink: `/blog/${date ? date.replace(/-/g, "/") : ""}/${slug}`,
+          };
+        }),
     },
   },
 });

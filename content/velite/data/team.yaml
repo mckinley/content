@@ -1,0 +1,26 @@
+# Team members data - demonstrates YAML data files
+# Common pattern in static sites for structured non-content data
+
+members:
+  - name: Alice Chen
+    role: Lead Developer
+    bio: Full-stack developer with 10 years of experience in web technologies.
+    avatar: /avatars/alice.jpg
+    social:
+      twitter: "@alicedev"
+      github: "alicechen"
+      linkedin: "alice-chen-dev"
+
+  - name: Bob Martinez
+    role: Content Strategist
+    bio: Specializes in content architecture and information design.
+    social:
+      twitter: "@bobcontent"
+      linkedin: "bob-martinez"
+
+  - name: Carol Williams
+    role: UX Designer
+    bio: Creates intuitive user experiences with a focus on accessibility.
+    avatar: /avatars/carol.jpg
+    social:
+      github: "carolux"

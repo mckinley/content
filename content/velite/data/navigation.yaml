@@ -1,0 +1,38 @@
+# Site navigation configuration
+# Demonstrates hierarchical YAML data structure
+
+main:
+  - label: Home
+    href: /
+  - label: Products
+    href: /products
+    children:
+      - label: Features
+        href: /products/features
+      - label: Pricing
+        href: /products/pricing
+      - label: Enterprise
+        href: /products/enterprise
+  - label: Documentation
+    href: /docs
+    children:
+      - label: Getting Started
+        href: /docs/getting-started
+      - label: API Reference
+        href: /docs/api
+      - label: Examples
+        href: /docs/examples
+  - label: Blog
+    href: /blog
+  - label: About
+    href: /about
+
+footer:
+  - label: Privacy Policy
+    href: /privacy
+  - label: Terms of Service
+    href: /terms
+  - label: Contact
+    href: /contact
+  - label: GitHub
+    href: https://github.com

@@ -1,0 +1,9 @@
+id,name,price,category,inStock
+prod-001,Wireless Keyboard,79.99,Electronics,true
+prod-002,USB-C Hub,49.99,Electronics,true
+prod-003,Mechanical Keyboard,149.99,Electronics,false
+prod-004,Monitor Stand,34.99,Accessories,true
+prod-005,Webcam HD,89.99,Electronics,true
+prod-006,Desk Mat,24.99,Accessories,true
+prod-007,Laptop Stand,59.99,Accessories,false
+prod-008,Noise-Canceling Headphones,249.99,Electronics,true

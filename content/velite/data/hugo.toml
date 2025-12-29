@@ -1,0 +1,29 @@
+# Hugo-style TOML configuration
+# Demonstrates TOML format popular in Hugo static sites
+
+baseURL = "https://example.com/"
+title = "My Hugo Site"
+languageCode = "en-us"
+theme = "ananke"
+
+# Site parameters
+[params]
+description = "A demo site built with Hugo"
+author = "Site Author"
+showReadingTime = true
+
+# Navigation menu
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "Posts"
+url = "/posts/"
+weight = 2
+
+[[menu.main]]
+name = "About"
+url = "/about/"
+weight = 3

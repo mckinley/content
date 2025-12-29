@@ -10,6 +10,11 @@ import {
   siteConfig,
   pages as velitePages,
   htmlPages,
+  team,
+  navigation,
+  products,
+  hugoConfig,
+  jekyllPosts,
 } from "@/.velite";
 
 // Data fetching
@@ -238,8 +243,17 @@ export default async function Home() {
             <a href="#editorjs" className="text-gray-600 hover:text-gray-900">
               EditorJS
             </a>
-            <a href="#velite-advanced" className="text-gray-600 hover:text-gray-900">
+            <a
+              href="#velite-advanced"
+              className="text-gray-600 hover:text-gray-900"
+            >
               Advanced Velite
+            </a>
+            <a
+              href="#data-formats"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              Data Formats
             </a>
             <a
               href="#contentlayer"
@@ -415,7 +429,10 @@ export default async function Home() {
             </p>
             <div className="mt-3 space-y-2">
               {velitePosts.map((post) => (
-                <div key={post.slug} className="text-sm flex items-center gap-2">
+                <div
+                  key={post.slug}
+                  className="text-sm flex items-center gap-2"
+                >
                   {post.parentSlug ? (
                     <>
                       <span className="text-gray-400">└─</span>
@@ -430,6 +447,228 @@ export default async function Home() {
                       <span className="font-medium">{post.title}</span>
                       <span className="text-xs text-gray-400">(root)</span>
                     </>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        {/* Data Formats Section */}
+        <Section
+          id="data-formats"
+          title="Data Format Demos"
+          description="Different file formats used for content storage in static site generators"
+          features={["YAML", "CSV", "TOML", "Jekyll Filenames"]}
+        >
+          {/* YAML Team Data */}
+          <div className="p-4 border border-gray-200 rounded-lg">
+            <div className="flex justify-between items-start">
+              <h3 className="font-medium">Team Members (YAML)</h3>
+              <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
+                .yaml
+              </span>
+            </div>
+            <p className="text-sm text-gray-500 mt-1">
+              Structured data commonly stored in _data/ or data/ folders
+            </p>
+            <div className="mt-3 grid gap-3">
+              {team.members.map((member) => (
+                <div
+                  key={member.name}
+                  className="flex items-center gap-3 p-2 bg-gray-50 rounded"
+                >
+                  <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-sm">
+                    {member.name.charAt(0)}
+                  </div>
+                  <div>
+                    <div className="font-medium text-sm">{member.name}</div>
+                    <div className="text-xs text-gray-500">{member.role}</div>
+                  </div>
+                  {member.social && (
+                    <div className="ml-auto flex gap-2 text-xs text-gray-400">
+                      {member.social.github && (
+                        <span>gh:{member.social.github}</span>
+                      )}
+                      {member.social.twitter && (
+                        <span>{member.social.twitter}</span>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* YAML Navigation */}
+          <div className="p-4 border border-gray-200 rounded-lg">
+            <div className="flex justify-between items-start">
+              <h3 className="font-medium">Site Navigation (YAML)</h3>
+              <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
+                .yaml
+              </span>
+            </div>
+            <p className="text-sm text-gray-500 mt-1">
+              Hierarchical navigation with nested children
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {navigation.main.map((item) => (
+                <div key={item.href} className="text-sm">
+                  <span className="px-2 py-1 bg-gray-100 rounded">
+                    {item.label}
+                  </span>
+                  {item.children && (
+                    <span className="text-xs text-gray-400 ml-1">
+                      (+{item.children.length})
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CSV Products */}
+          <div className="p-4 border border-gray-200 rounded-lg">
+            <div className="flex justify-between items-start">
+              <h3 className="font-medium">Products Table (CSV)</h3>
+              <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
+                .csv
+              </span>
+            </div>
+            <p className="text-sm text-gray-500 mt-1">
+              Spreadsheet-like data for pricing, catalogs, etc.
+            </p>
+            <div className="mt-3 overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-gray-200">
+                    <th className="text-left py-2 pr-4 font-medium text-gray-600">
+                      Name
+                    </th>
+                    <th className="text-right py-2 pr-4 font-medium text-gray-600">
+                      Price
+                    </th>
+                    <th className="text-left py-2 pr-4 font-medium text-gray-600">
+                      Category
+                    </th>
+                    <th className="text-center py-2 font-medium text-gray-600">
+                      Stock
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.rows.slice(0, 5).map((row) => (
+                    <tr key={row.id} className="border-b border-gray-100">
+                      <td className="py-2 pr-4">{row.name}</td>
+                      <td className="py-2 pr-4 text-right">${row.price}</td>
+                      <td className="py-2 pr-4 text-gray-500">
+                        {row.category}
+                      </td>
+                      <td className="py-2 text-center">
+                        {row.inStock === "true" ? (
+                          <span className="text-green-600">●</span>
+                        ) : (
+                          <span className="text-gray-300">○</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {products.rows.length > 5 && (
+                <p className="text-xs text-gray-400 mt-2">
+                  +{products.rows.length - 5} more items
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* TOML Hugo Config */}
+          <div className="p-4 border border-gray-200 rounded-lg">
+            <div className="flex justify-between items-start">
+              <h3 className="font-medium">Hugo Configuration (TOML)</h3>
+              <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
+                .toml
+              </span>
+            </div>
+            <p className="text-sm text-gray-500 mt-1">
+              Hugo-style site configuration - popular in Go/Rust ecosystems
+            </p>
+            <div className="mt-3 bg-gray-50 p-3 rounded text-sm font-mono">
+              <div>
+                <span className="text-gray-500">baseURL =</span> &quot;
+                {hugoConfig.baseURL}&quot;
+              </div>
+              <div>
+                <span className="text-gray-500">title =</span> &quot;
+                {hugoConfig.title}&quot;
+              </div>
+              <div>
+                <span className="text-gray-500">languageCode =</span> &quot;
+                {hugoConfig.languageCode}&quot;
+              </div>
+              {hugoConfig.theme && (
+                <div>
+                  <span className="text-gray-500">theme =</span> &quot;
+                  {hugoConfig.theme}&quot;
+                </div>
+              )}
+              {hugoConfig.params && (
+                <div className="mt-2 pl-2 border-l-2 border-gray-200">
+                  <div className="text-gray-400">[params]</div>
+                  {hugoConfig.params.author && (
+                    <div>
+                      <span className="text-gray-500">author =</span> &quot;
+                      {hugoConfig.params.author}&quot;
+                    </div>
+                  )}
+                  {hugoConfig.params.showReadingTime !== undefined && (
+                    <div>
+                      <span className="text-gray-500">showReadingTime =</span>{" "}
+                      {String(hugoConfig.params.showReadingTime)}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Jekyll Posts */}
+          <div className="p-4 border border-gray-200 rounded-lg">
+            <div className="flex justify-between items-start">
+              <h3 className="font-medium">Jekyll-Style Posts</h3>
+              <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
+                YYYY-MM-DD-slug.md
+              </span>
+            </div>
+            <p className="text-sm text-gray-500 mt-1">
+              Date extracted from filename - no frontmatter date needed
+            </p>
+            <div className="mt-3 space-y-3">
+              {jekyllPosts.map((post) => (
+                <div key={post.slug} className="p-3 bg-gray-50 rounded">
+                  <div className="flex justify-between items-start">
+                    <h4 className="font-medium text-sm">{post.title}</h4>
+                    {post.date && (
+                      <span className="text-xs text-gray-500">
+                        {format(parseISO(post.date), "MMM d, yyyy")}
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1 font-mono">
+                    {post.permalink}
+                  </div>
+                  {post.categories && post.categories.length > 0 && (
+                    <div className="flex gap-1 mt-2">
+                      {post.categories.map((cat) => (
+                        <span
+                          key={cat}
+                          className="text-xs px-1.5 py-0.5 bg-gray-200 rounded"
+                        >
+                          {cat}
+                        </span>
+                      ))}
+                    </div>
                   )}
                 </div>
               ))}
