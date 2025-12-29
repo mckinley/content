@@ -1,4 +1,41 @@
 ---
-title: another post
+title: another-post
+publishedDate: 2024-12-23
+description: Understanding how Keystatic manages content with Git
+author: Demo Author
+featured: false
+tags:
+  - keystatic
+  - git
+  - workflow
 ---
-This is another post
+
+# Git-Based Workflow
+
+Keystatic stores all content as files in your repository. This means:
+
+## Version Control Benefits
+
+- **Full history** - Every change is tracked
+- **Branching** - Preview changes before publishing
+- **Collaboration** - Team members can review via PRs
+
+## How It Works
+
+1. Edit content in the admin UI
+2. Changes are written to files
+3. Commit and push to publish
+
+## File Format
+
+Posts are stored as Markdoc files with YAML frontmatter:
+
+```yaml
+---
+title: My Post
+date: 2024-12-23
+---
+Content goes here...
+```
+
+This approach combines the ease of a CMS with the power of version control.

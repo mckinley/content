@@ -3,12 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:content": "velite --watch",
-    "build:content": "velite --clean",
-    "dev:next": "next dev",
-    "build:next": "next build",
-    "dev": "run-p dev:*",
-    "build": "run-s build:*",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
@@ -16,6 +12,11 @@
     "prep": "run-s format lint"
   },
   "dependencies": {
+    "@editorjs/code": "^2.9.4",
+    "@editorjs/editorjs": "^2.31.0",
+    "@editorjs/header": "^2.8.8",
+    "@editorjs/list": "^2.0.9",
+    "@editorjs/quote": "^2.7.6",
     "@keystatic/core": "^0.5.42",
     "@keystatic/next": "^5.0.1",
     "@markdoc/markdoc": "^0.4.0",

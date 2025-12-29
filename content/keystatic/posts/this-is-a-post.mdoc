@@ -1,4 +1,48 @@
 ---
-title: This is a post
+title: this-is-a-post
+publishedDate: 2024-12-20
+description: An introduction to Keystatic and its admin interface
+author: Demo Author
+featured: true
+tags:
+  - keystatic
+  - introduction
+  - admin
 ---
-This is content.
+
+# Welcome to Keystatic
+
+Keystatic is a Git-based CMS that provides a visual editing experience while keeping content in your repository.
+
+## Key Features
+
+- **Visual Editor** - Edit content without touching code
+- **Git Integration** - Content stored as files
+- **Markdoc Support** - Rich formatting with components
+- **Type Safety** - Schema validation for content
+
+## Admin Interface
+
+Access the admin at `/keystatic` to:
+
+1. Create new posts
+2. Edit existing content
+3. Manage metadata fields
+4. Preview changes live
+
+## Schema Definition
+
+Define your content structure in `keystatic.config.ts`:
+
+```typescript
+posts: collection({
+  label: 'Posts',
+  path: 'content/keystatic/posts/*',
+  schema: {
+    title: fields.slug({ name: { label: 'Title' } }),
+    content: fields.markdoc({ label: 'Content' }),
+  },
+})
+```
+
+This ensures all posts follow a consistent structure.
