@@ -1,0 +1,16 @@
+{
+  "title": "Hello world",
+  "array": ["a", "b", "c"],
+  "date": "1992-02-25T21:22:00.000Z",
+  "object": {
+    "key": "value"
+  },
+  "cover": {
+    "src": "/static/cover-6ecc40c2.jpeg",
+    "height": 529,
+    "width": 816,
+    "blurDataURL": "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAABQAQCdASoIAAUADMDOJQBOgCgAAP7lwruWXAAA",
+    "blurWidth": 8,
+    "blurHeight": 5
+  }
+}
