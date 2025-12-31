@@ -7,8 +7,5 @@
     }
   ],
   "items": [],
-  "team": [],
-  "extends": {
-    "velite": "velite.config.ts"
-  }
+  "team": []
 }
