@@ -1,11 +1,5 @@
 {
-  "collections": [
-    {
-      "name": "Posts",
-      "path": "content/keystatic/posts",
-      "source": "manual"
-    }
-  ],
+  "collections": [],
   "items": [],
   "team": [],
   "extends": {
