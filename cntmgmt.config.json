@@ -1,6 +1,377 @@
 {
-  "collections": [],
-  "items": [],
+  "collections": [
+    {
+      "name": "posts",
+      "path": "content/velite/posts",
+      "source": "manual",
+      "schema": {
+        "title": {
+          "name": "title",
+          "type": "string"
+        },
+        "slug": {
+          "name": "slug",
+          "type": "string"
+        },
+        "parentSlug": {
+          "name": "parentSlug",
+          "type": "string"
+        },
+        "date": {
+          "name": "date",
+          "type": "date"
+        },
+        "description": {
+          "name": "description",
+          "type": "string"
+        },
+        "author": {
+          "name": "author",
+          "type": "string"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "array"
+        },
+        "cover": {
+          "name": "cover",
+          "type": "string"
+        },
+        "metadata": {
+          "name": "metadata",
+          "type": "unknown"
+        },
+        "content": {
+          "name": "content",
+          "type": "string"
+        },
+        "excerpt": {
+          "name": "excerpt",
+          "type": "unknown"
+        },
+        "toc": {
+          "name": "toc",
+          "type": "unknown"
+        }
+      }
+    },
+    {
+      "name": "articles",
+      "path": "content/velite/articles",
+      "source": "manual",
+      "schema": {
+        "content": {
+          "name": "content",
+          "type": "string"
+        },
+        "title": {
+          "name": "title",
+          "type": "string"
+        },
+        "slug": {
+          "name": "slug",
+          "type": "string"
+        },
+        "description": {
+          "name": "description",
+          "type": "string"
+        },
+        "author": {
+          "name": "author",
+          "type": "string"
+        },
+        "array": {
+          "name": "array",
+          "type": "array"
+        },
+        "date": {
+          "name": "date",
+          "type": "date"
+        },
+        "key": {
+          "name": "key",
+          "type": "string"
+        },
+        "cover": {
+          "name": "cover",
+          "type": "unknown"
+        }
+      }
+    },
+    {
+      "name": "pages",
+      "path": "content/velite/pages",
+      "source": "manual",
+      "schema": {
+        "title": {
+          "name": "title",
+          "type": "string"
+        },
+        "slug": {
+          "name": "slug",
+          "type": "string"
+        },
+        "description": {
+          "name": "description",
+          "type": "string"
+        },
+        "code": {
+          "name": "code",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "htmlPages",
+      "path": "content/velite/html",
+      "source": "manual",
+      "schema": {
+        "title": {
+          "name": "title",
+          "type": "string"
+        },
+        "slug": {
+          "name": "slug",
+          "type": "string"
+        },
+        "content": {
+          "name": "content",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "jekyllPosts",
+      "path": "content/velite/jekyll-posts",
+      "source": "manual",
+      "schema": {
+        "title": {
+          "name": "title",
+          "type": "string"
+        },
+        "layout": {
+          "name": "layout",
+          "type": "string"
+        },
+        "categories": {
+          "name": "categories",
+          "type": "array"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "array"
+        },
+        "content": {
+          "name": "content",
+          "type": "string"
+        },
+        "excerpt": {
+          "name": "excerpt",
+          "type": "unknown"
+        },
+        "rawPath": {
+          "name": "rawPath",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "post",
+      "path": "content/contentlayer/posts",
+      "source": "manual",
+      "schema": {
+        "title": {
+          "name": "title",
+          "type": "string"
+        },
+        "date": {
+          "name": "date",
+          "type": "date"
+        },
+        "description": {
+          "name": "description",
+          "type": "string"
+        },
+        "author": {
+          "name": "author",
+          "type": "string"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "list<string>"
+        },
+        "featured": {
+          "name": "featured",
+          "type": "boolean"
+        }
+      }
+    }
+  ],
+  "items": [
+    {
+      "name": "siteConfig",
+      "path": "content/velite/config/site.json5",
+      "source": "manual",
+      "schema": {
+        "name": {
+          "name": "name",
+          "type": "string"
+        },
+        "version": {
+          "name": "version",
+          "type": "string"
+        },
+        "description": {
+          "name": "description",
+          "type": "string"
+        },
+        "features": {
+          "name": "features",
+          "type": "array"
+        }
+      }
+    },
+    {
+      "name": "team",
+      "path": "content/velite/data/team.yaml",
+      "source": "manual",
+      "schema": {
+        "members": {
+          "name": "members",
+          "type": "array"
+        },
+        "name": {
+          "name": "name",
+          "type": "string"
+        },
+        "role": {
+          "name": "role",
+          "type": "string"
+        },
+        "bio": {
+          "name": "bio",
+          "type": "string"
+        },
+        "avatar": {
+          "name": "avatar",
+          "type": "string"
+        },
+        "twitter": {
+          "name": "twitter",
+          "type": "string"
+        },
+        "github": {
+          "name": "github",
+          "type": "string"
+        },
+        "linkedin": {
+          "name": "linkedin",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "navigation",
+      "path": "content/velite/data/navigation.yaml",
+      "source": "manual",
+      "schema": {
+        "main": {
+          "name": "main",
+          "type": "array"
+        },
+        "label": {
+          "name": "label",
+          "type": "string"
+        },
+        "href": {
+          "name": "href",
+          "type": "string"
+        },
+        "footer": {
+          "name": "footer",
+          "type": "array"
+        }
+      }
+    },
+    {
+      "name": "products",
+      "path": "content/velite/data/products.csv",
+      "source": "manual",
+      "schema": {
+        "rows": {
+          "name": "rows",
+          "type": "array"
+        },
+        "id": {
+          "name": "id",
+          "type": "string"
+        },
+        "name": {
+          "name": "name",
+          "type": "string"
+        },
+        "price": {
+          "name": "price",
+          "type": "string"
+        },
+        "category": {
+          "name": "category",
+          "type": "string"
+        },
+        "inStock": {
+          "name": "inStock",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "hugoConfig",
+      "path": "content/velite/data/hugo.toml",
+      "source": "manual",
+      "schema": {
+        "baseURL": {
+          "name": "baseURL",
+          "type": "string"
+        },
+        "title": {
+          "name": "title",
+          "type": "string"
+        },
+        "languageCode": {
+          "name": "languageCode",
+          "type": "string"
+        },
+        "theme": {
+          "name": "theme",
+          "type": "string"
+        },
+        "description": {
+          "name": "description",
+          "type": "string"
+        },
+        "author": {
+          "name": "author",
+          "type": "string"
+        },
+        "showReadingTime": {
+          "name": "showReadingTime",
+          "type": "boolean"
+        },
+        "name": {
+          "name": "name",
+          "type": "string"
+        },
+        "url": {
+          "name": "url",
+          "type": "string"
+        },
+        "weight": {
+          "name": "weight",
+          "type": "number"
+        }
+      }
+    }
+  ],
   "team": [],
   "extends": {
     "velite": "velite.config.ts"
