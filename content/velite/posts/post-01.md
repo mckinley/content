@@ -1,11 +1,12 @@
 ---
 title: Introduction to Velite
-date: 2024-12-20
+date: "2024-12-20T00:00:00.000Z"
 description: A modern content layer for Next.js with powerful transformation capabilities
 author: Demo Author
 tags: ["velite", "introduction", "next.js"]
 cover: ../files/cover.jpeg
 parentSlug: null
+slug: post-slug
 ---
 
 # What is Velite?
