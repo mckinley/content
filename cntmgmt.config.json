@@ -6,52 +6,52 @@
       "source": "manual",
       "schema": {
         "title": {
-          "name": "title",
-          "type": "string"
+          "type": "text",
+          "label": "Title"
         },
         "slug": {
-          "name": "slug",
-          "type": "string"
+          "type": "text",
+          "label": "Slug"
         },
         "parentSlug": {
-          "name": "parentSlug",
-          "type": "string"
+          "type": "text",
+          "label": "Parent Slug"
         },
         "date": {
-          "name": "date",
-          "type": "date"
+          "type": "date",
+          "label": "Date"
         },
         "description": {
-          "name": "description",
-          "type": "string"
+          "type": "text",
+          "label": "Description"
         },
         "author": {
-          "name": "author",
-          "type": "string"
+          "type": "text",
+          "label": "Author"
         },
         "tags": {
-          "name": "tags",
-          "type": "array"
+          "type": "array",
+          "label": "Tags"
         },
         "cover": {
-          "name": "cover",
-          "type": "string"
+          "type": "text",
+          "label": "Cover"
         },
         "metadata": {
-          "name": "metadata",
-          "type": "unknown"
+          "type": "text",
+          "label": "Metadata"
         },
         "content": {
-          "name": "content",
-          "type": "string"
+          "type": "text",
+          "label": "Content"
         },
         "excerpt": {
-          "name": "excerpt",
-          "type": "unknown"
+          "type": "text",
+          "label": "Excerpt"
         },
         "toc": {
-          "name": "toc",
-          "type": "unknown"
+          "type": "text",
+          "label": "Toc"
         }
       }
     },
@@ -61,40 +61,40 @@
       "source": "manual",
       "schema": {
         "content": {
-          "name": "content",
-          "type": "string"
+          "type": "text",
+          "label": "Content"
         },
         "title": {
-          "name": "title",
-          "type": "string"
+          "type": "text",
+          "label": "Title"
         },
         "slug": {
-          "name": "slug",
-          "type": "string"
+          "type": "text",
+          "label": "Slug"
         },
         "description": {
-          "name": "description",
-          "type": "string"
+          "type": "text",
+          "label": "Description"
         },
         "author": {
-          "name": "author",
-          "type": "string"
+          "type": "text",
+          "label": "Author"
         },
         "array": {
-          "name": "array",
-          "type": "array"
+          "type": "array",
+          "label": "Array"
         },
         "date": {
-          "name": "date",
-          "type": "date"
+          "type": "date",
+          "label": "Date"
         },
         "key": {
-          "name": "key",
-          "type": "string"
+          "type": "text",
+          "label": "Key"
         },
         "cover": {
-          "name": "cover",
-          "type": "unknown"
+          "type": "text",
+          "label": "Cover"
         }
       }
     },
@@ -104,20 +104,20 @@
       "source": "manual",
       "schema": {
         "title": {
-          "name": "title",
-          "type": "string"
+          "type": "text",
+          "label": "Title"
         },
         "slug": {
-          "name": "slug",
-          "type": "string"
+          "type": "text",
+          "label": "Slug"
         },
         "description": {
-          "name": "description",
-          "type": "string"
+          "type": "text",
+          "label": "Description"
         },
         "code": {
-          "name": "code",
-          "type": "string"
+          "type": "text",
+          "label": "Code"
         }
       }
     },
@@ -127,16 +127,16 @@
       "source": "manual",
       "schema": {
         "title": {
-          "name": "title",
-          "type": "string"
+          "type": "text",
+          "label": "Title"
         },
         "slug": {
-          "name": "slug",
-          "type": "string"
+          "type": "text",
+          "label": "Slug"
         },
         "content": {
-          "name": "content",
-          "type": "string"
+          "type": "text",
+          "label": "Content"
         }
       }
     },
@@ -146,63 +146,32 @@
       "source": "manual",
       "schema": {
         "title": {
-          "name": "title",
-          "type": "string"
+          "type": "text",
+          "label": "Title"
         },
         "layout": {
-          "name": "layout",
-          "type": "string"
+          "type": "text",
+          "label": "Layout"
         },
         "categories": {
-          "name": "categories",
-          "type": "array"
+          "type": "array",
+          "label": "Categories"
         },
         "tags": {
-          "name": "tags",
-          "type": "array"
+          "type": "array",
+          "label": "Tags"
         },
         "content": {
-          "name": "content",
-          "type": "string"
+          "type": "text",
+          "label": "Content"
         },
         "excerpt": {
-          "name": "excerpt",
-          "type": "unknown"
+          "type": "text",
+          "label": "Excerpt"
         },
         "rawPath": {
-          "name": "rawPath",
-          "type": "string"
-        }
-      }
-    },
-    {
-      "name": "post",
-      "path": "content/contentlayer/posts",
-      "source": "manual",
-      "schema": {
-        "title": {
-          "name": "title",
-          "type": "string"
-        },
-        "date": {
-          "name": "date",
-          "type": "date"
-        },
-        "description": {
-          "name": "description",
-          "type": "string"
-        },
-        "author": {
-          "name": "author",
-          "type": "string"
-        },
-        "tags": {
-          "name": "tags",
-          "type": "list<string>"
-        },
-        "featured": {
-          "name": "featured",
-          "type": "boolean"
+          "type": "text",
+          "label": "Raw Path"
         }
       }
     }
@@ -214,20 +183,20 @@
       "source": "manual",
       "schema": {
         "name": {
-          "name": "name",
-          "type": "string"
+          "type": "text",
+          "label": "Name"
         },
         "version": {
-          "name": "version",
-          "type": "string"
+          "type": "text",
+          "label": "Version"
         },
         "description": {
-          "name": "description",
-          "type": "string"
+          "type": "text",
+          "label": "Description"
         },
         "features": {
-          "name": "features",
-          "type": "array"
+          "type": "array",
+          "label": "Features"
         }
       }
     },
@@ -237,36 +206,36 @@
       "source": "manual",
       "schema": {
         "members": {
-          "name": "members",
-          "type": "array"
+          "type": "array",
+          "label": "Members"
         },
         "name": {
-          "name": "name",
-          "type": "string"
+          "type": "text",
+          "label": "Name"
         },
         "role": {
-          "name": "role",
-          "type": "string"
+          "type": "text",
+          "label": "Role"
         },
         "bio": {
-          "name": "bio",
-          "type": "string"
+          "type": "text",
+          "label": "Bio"
         },
         "avatar": {
-          "name": "avatar",
-          "type": "string"
+          "type": "text",
+          "label": "Avatar"
         },
         "twitter": {
-          "name": "twitter",
-          "type": "string"
+          "type": "text",
+          "label": "Twitter"
         },
         "github": {
-          "name": "github",
-          "type": "string"
+          "type": "text",
+          "label": "Github"
         },
         "linkedin": {
-          "name": "linkedin",
-          "type": "string"
+          "type": "text",
+          "label": "Linkedin"
         }
       }
     },
@@ -276,20 +245,20 @@
       "source": "manual",
       "schema": {
         "main": {
-          "name": "main",
-          "type": "array"
+          "type": "array",
+          "label": "Main"
         },
         "label": {
-          "name": "label",
-          "type": "string"
+          "type": "text",
+          "label": "Label"
         },
         "href": {
-          "name": "href",
-          "type": "string"
+          "type": "text",
+          "label": "Href"
         },
         "footer": {
-          "name": "footer",
-          "type": "array"
+          "type": "array",
+          "label": "Footer"
         }
       }
     },
@@ -299,28 +268,28 @@
       "source": "manual",
       "schema": {
         "rows": {
-          "name": "rows",
-          "type": "array"
+          "type": "array",
+          "label": "Rows"
         },
         "id": {
-          "name": "id",
-          "type": "string"
+          "type": "text",
+          "label": "Id"
         },
         "name": {
-          "name": "name",
-          "type": "string"
+          "type": "text",
+          "label": "Name"
         },
         "price": {
-          "name": "price",
-          "type": "string"
+          "type": "text",
+          "label": "Price"
         },
         "category": {
-          "name": "category",
-          "type": "string"
+          "type": "text",
+          "label": "Category"
         },
         "inStock": {
-          "name": "inStock",
-          "type": "string"
+          "type": "text",
+          "label": "In Stock"
         }
       }
     },
@@ -330,50 +299,47 @@
       "source": "manual",
       "schema": {
         "baseURL": {
-          "name": "baseURL",
-          "type": "string"
+          "type": "text",
+          "label": "Base U R L"
         },
         "title": {
-          "name": "title",
-          "type": "string"
+          "type": "text",
+          "label": "Title"
         },
         "languageCode": {
-          "name": "languageCode",
-          "type": "string"
+          "type": "text",
+          "label": "Language Code"
         },
         "theme": {
-          "name": "theme",
-          "type": "string"
+          "type": "text",
+          "label": "Theme"
         },
         "description": {
-          "name": "description",
-          "type": "string"
+          "type": "text",
+          "label": "Description"
         },
         "author": {
-          "name": "author",
-          "type": "string"
+          "type": "text",
+          "label": "Author"
         },
         "showReadingTime": {
-          "name": "showReadingTime",
-          "type": "boolean"
+          "type": "boolean",
+          "label": "Show Reading Time"
         },
         "name": {
-          "name": "name",
-          "type": "string"
+          "type": "text",
+          "label": "Name"
         },
         "url": {
-          "name": "url",
-          "type": "string"
+          "type": "text",
+          "label": "Url"
         },
         "weight": {
-          "name": "weight",
-          "type": "number"
+          "type": "number",
+          "label": "Weight"
         }
       }
     }
   ],
-  "team": [],
-  "extends": {
-    "velite": "velite.config.ts"
-  }
+  "team": []
 }
