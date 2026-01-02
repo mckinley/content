@@ -3,7 +3,11 @@
   "slug": "hello-world",
   "description": "A demonstration of EditorJS block-based content",
   "author": "Demo Author",
-  "array": ["editorjs", "velite", "demo"],
+  "array": [
+    "editorjs",
+    "velite",
+    "demo"
+  ],
   "date": "2024-12-26T10:00:00.000Z",
   "object": {
     "key": "demo-value"
