@@ -1,7 +1,6 @@
 import { parse as csvParse } from "csv-parse/sync";
 import edjsHTML from "editorjs-html";
 import fs from "fs";
-import { JSDOM } from "jsdom";
 import JSON5 from "json5";
 import path from "path";
 import toml from "toml";
@@ -24,7 +23,7 @@ function metadata(vfile: VFile) {
 }
 
 const editorjsLoader = defineLoader({
-  test: /\.editorjs$/,
+  test: /\.editorjs\.json$/,
   load: (vfile) => {
     const edjsParser = edjsHTML();
     const html = edjsParser.parse(JSON.parse(vfile.toString())).join("");
@@ -41,15 +40,12 @@ const json5Loader = defineLoader({
   },
 });
 
-// HTML loader - extracts metadata from embedded <script id="meta"> tags
+// HTML loader - uses sidecar .meta.json for metadata
 const htmlLoader = defineLoader({
   test: /\.html$/,
   load: (vfile) => {
-    const dom = new JSDOM(vfile.toString());
-    const metaScript = dom.window.document.querySelector("script#meta");
-    const meta = metaScript ? JSON5.parse(metaScript.textContent || "{}") : {};
-    metaScript?.remove();
-    const content = dom.window.document.body.innerHTML;
+    const content = vfile.toString();
+    const meta = metadata(vfile);
     return { data: { content, ...meta } };
   },
 });
@@ -131,7 +127,7 @@ export default defineConfig({
     },
     articles: {
       name: "Article",
-      pattern: `articles/**/*.editorjs`,
+      pattern: `articles/**/*.editorjs.json`,
       schema: s.object({
         content: s.string(),
         title: s.string(),
