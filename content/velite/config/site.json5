@@ -5,4 +5,5 @@
   version: "1.0.0",
   description: "A technical demo comparing content management approaches in Next.js",
   features: ["velite", "contentlayer", "keystatic", "editorjs"],
+  test: "test",
 }
