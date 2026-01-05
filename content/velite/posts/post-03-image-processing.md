@@ -33,7 +33,6 @@ The generated data maps directly to Next.js Image props:
 
 ```tsx
 import Image from 'next/image'
-
 ;<Image
   src={post.cover.src}
   alt={post.title}
