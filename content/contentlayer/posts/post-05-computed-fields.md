@@ -1,9 +1,9 @@
 ---
-title: "Computed Fields in Contentlayer"
+title: 'Computed Fields in Contentlayer'
 date: 2024-12-27
-description: "Explore how computed fields extend your content with derived values"
-author: "Demo Author"
-tags: ["contentlayer", "computed-fields", "automation"]
+description: 'Explore how computed fields extend your content with derived values'
+author: 'Demo Author'
+tags: ['contentlayer', 'computed-fields', 'automation']
 ---
 
 # Computed Fields Demo

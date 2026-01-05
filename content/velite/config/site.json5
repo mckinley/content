@@ -1,9 +1,9 @@
 {
   // Site configuration demonstrating JSON5 format
   // JSON5 supports comments and trailing commas
-  name: "Content Layer Demo",
-  version: "1.0.0",
-  description: "A technical demo comparing content management approaches in Next.js",
-  features: ["velite", "contentlayer", "keystatic", "editorjs"],
-  test: "test",
+  name: 'Content Layer Demo',
+  version: '1.0.0',
+  description: 'A technical demo comparing content management approaches in Next.js',
+  features: ['velite', 'contentlayer', 'keystatic', 'editorjs'],
+  test: 'test',
 }

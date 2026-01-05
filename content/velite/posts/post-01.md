@@ -1,9 +1,9 @@
 ---
 title: Introduction to Velite
-date: "2024-12-20T00:00:00.000Z"
+date: '2024-12-20T00:00:00.000Z'
 description: A modern content layer for Next.js with powerful transformation capabilities
 author: Demo Author
-tags: ["velite", "introduction", "next.js"]
+tags: ['velite', 'introduction', 'next.js']
 cover: ../files/cover.jpeg
 parentSlug: null
 slug: post-slug
@@ -28,7 +28,7 @@ Install Velite and configure your collections:
 export default defineConfig({
   collections: {
     posts: {
-      pattern: "posts/**/*.md",
+      pattern: 'posts/**/*.md',
       schema: s.object({
         title: s.string(),
         date: s.isodate(),
@@ -36,7 +36,7 @@ export default defineConfig({
       }),
     },
   },
-});
+})
 ```
 
 ## Image Handling

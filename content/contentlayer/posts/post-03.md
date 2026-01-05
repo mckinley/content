@@ -3,7 +3,7 @@ title: Working with MDX
 date: 2024-12-22
 description: Using MDX for interactive content with React components
 author: Demo Author
-tags: ["contentlayer", "mdx", "components"]
+tags: ['contentlayer', 'mdx', 'components']
 ---
 
 # MDX Support
@@ -16,10 +16,10 @@ Enable MDX in your document type:
 
 ```typescript
 defineDocumentType(() => ({
-  name: "Post",
-  contentType: "mdx",
+  name: 'Post',
+  contentType: 'mdx',
   // ...
-}));
+}))
 ```
 
 ## Custom Components
@@ -46,7 +46,7 @@ Code blocks automatically support syntax highlighting:
 
 ```javascript
 function greet(name) {
-  return `Hello, ${name}!`;
+  return `Hello, ${name}!`
 }
 ```
 

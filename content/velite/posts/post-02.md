@@ -3,7 +3,7 @@ title: Custom Loaders in Velite
 date: 2024-12-22
 description: Building custom file loaders for non-standard content formats
 author: Demo Author
-tags: ["velite", "loaders", "customization"]
+tags: ['velite', 'loaders', 'customization']
 cover: ../files/cover.jpeg
 parentSlug: posts/post-01
 ---
@@ -18,10 +18,10 @@ Velite allows you to define custom loaders for any file format. This demo uses a
 const customLoader = defineLoader({
   test: /\.custom$/,
   load: (vfile) => {
-    const data = parseCustomFormat(vfile.toString());
-    return { data };
+    const data = parseCustomFormat(vfile.toString())
+    return { data }
   },
-});
+})
 ```
 
 ## Loader Components

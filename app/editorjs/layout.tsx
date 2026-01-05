@@ -1,5 +1,5 @@
-import EditorJSApp from "./editor";
+import EditorJSApp from './editor'
 
 export default function Layout() {
-  return <EditorJSApp />;
+  return <EditorJSApp />
 }

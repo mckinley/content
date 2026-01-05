@@ -3,7 +3,7 @@ title: Schema Definition Guide
 date: 2024-12-21
 description: Learn how to define content schemas with field types and validation
 author: Demo Author
-tags: ["contentlayer", "schema", "validation"]
+tags: ['contentlayer', 'schema', 'validation']
 ---
 
 # Defining Content Schemas

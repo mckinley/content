@@ -1,9 +1,9 @@
 ---
-title: "Image Processing with Velite"
+title: 'Image Processing with Velite'
 date: 2024-12-26
-description: "How Velite automatically optimizes images with blur placeholders"
-author: "Demo Author"
-tags: ["velite", "images", "optimization", "next.js"]
+description: 'How Velite automatically optimizes images with blur placeholders'
+author: 'Demo Author'
+tags: ['velite', 'images', 'optimization', 'next.js']
 cover: ../files/cover.jpeg
 parentSlug: null
 ---
@@ -32,16 +32,16 @@ For each image referenced in your content, Velite produces:
 The generated data maps directly to Next.js Image props:
 
 ```tsx
-import Image from "next/image";
+import Image from 'next/image'
 
-<Image
+;<Image
   src={post.cover.src}
   alt={post.title}
   width={post.cover.width}
   height={post.cover.height}
   placeholder="blur"
   blurDataURL={post.cover.blurDataURL}
-/>;
+/>
 ```
 
 ## Benefits
@@ -56,7 +56,7 @@ import Image from "next/image";
 Velite also extracts reading time and word count from markdown:
 
 ```typescript
-metadata: s.metadata(); // { readingTime: 2, wordCount: 450 }
+metadata: s.metadata() // { readingTime: 2, wordCount: 450 }
 ```
 
 This makes it easy to display "5 min read" without manual calculation.

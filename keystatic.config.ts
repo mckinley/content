@@ -1,33 +1,33 @@
-import { config, fields, collection } from "@keystatic/core";
+import { config, fields, collection } from '@keystatic/core'
 
 export default config({
   storage: {
-    kind: "local",
+    kind: 'local',
   },
   collections: {
     posts: collection({
-      label: "Posts",
-      slugField: "title",
-      path: "content/keystatic/posts/*",
-      format: { contentField: "content" },
+      label: 'Posts',
+      slugField: 'title',
+      path: 'content/keystatic/posts/*',
+      format: { contentField: 'content' },
       schema: {
-        title: fields.slug({ name: { label: "Title" } }),
-        publishedDate: fields.date({ label: "Published Date" }),
+        title: fields.slug({ name: { label: 'Title' } }),
+        publishedDate: fields.date({ label: 'Published Date' }),
         description: fields.text({
-          label: "Description",
+          label: 'Description',
           multiline: true,
         }),
-        author: fields.text({ label: "Author" }),
+        author: fields.text({ label: 'Author' }),
         featured: fields.checkbox({
-          label: "Featured Post",
+          label: 'Featured Post',
           defaultValue: false,
         }),
-        tags: fields.array(fields.text({ label: "Tag" }), {
-          label: "Tags",
+        tags: fields.array(fields.text({ label: 'Tag' }), {
+          label: 'Tags',
           itemLabel: (props) => props.value,
         }),
-        content: fields.markdoc({ label: "Content" }),
+        content: fields.markdoc({ label: 'Content' }),
       },
     }),
   },
-});
+})

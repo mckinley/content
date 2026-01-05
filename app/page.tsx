@@ -1,9 +1,9 @@
-import keystaticConfig from "@/keystatic.config";
-import { createReader } from "@keystatic/core/reader";
-import { allPosts } from "contentlayer/generated";
-import { compareDesc, format, parseISO } from "date-fns";
-import Link from "next/link";
-import Image from "next/image";
+import keystaticConfig from '@/keystatic.config'
+import { createReader } from '@keystatic/core/reader'
+import { allPosts } from 'contentlayer/generated'
+import { compareDesc, format, parseISO } from 'date-fns'
+import Link from 'next/link'
+import Image from 'next/image'
 import {
   posts as velitePosts,
   articles as veliteArticles,
@@ -15,15 +15,13 @@ import {
   products,
   hugoConfig,
   jekyllPosts,
-} from "@/.velite";
+} from '@/.velite'
 
 // Data fetching
-const contentLayerPosts = allPosts.sort((a, b) =>
-  compareDesc(new Date(a.date), new Date(b.date)),
-);
+const contentLayerPosts = allPosts.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
 
-const reader = createReader(process.cwd(), keystaticConfig);
-const keystaticPosts = await reader.collections.posts.all();
+const reader = createReader(process.cwd(), keystaticConfig)
+const keystaticPosts = await reader.collections.posts.all()
 
 // Section component
 function Section({
@@ -34,12 +32,12 @@ function Section({
   adminLink,
   children,
 }: {
-  id: string;
-  title: string;
-  description: string;
-  features: string[];
-  adminLink?: { href: string; label: string };
-  children: React.ReactNode;
+  id: string
+  title: string
+  description: string
+  features: string[]
+  adminLink?: { href: string; label: string }
+  children: React.ReactNode
 }) {
   return (
     <section id={id} className="mb-16">
@@ -48,10 +46,7 @@ function Section({
         <p className="text-gray-600 mt-1 text-sm">{description}</p>
         <div className="flex flex-wrap gap-2 mt-3">
           {features.map((feature) => (
-            <span
-              key={feature}
-              className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded"
-            >
+            <span key={feature} className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">
               {feature}
             </span>
           ))}
@@ -67,7 +62,7 @@ function Section({
       </header>
       <div className="space-y-4">{children}</div>
     </section>
-  );
+  )
 }
 
 // Post card component
@@ -82,15 +77,15 @@ function PostCard({
   wordCount,
   featured,
 }: {
-  title: string;
-  href?: string;
-  date?: string;
-  description?: string;
-  author?: string;
-  tags?: string[];
-  readingTime?: number;
-  wordCount?: number;
-  featured?: boolean;
+  title: string
+  href?: string
+  date?: string
+  description?: string
+  author?: string
+  tags?: string[]
+  readingTime?: number
+  wordCount?: number
+  featured?: boolean
 }) {
   const TitleEl = href ? (
     <Link href={href} className="hover:underline">
@@ -98,7 +93,7 @@ function PostCard({
     </Link>
   ) : (
     <span>{title}</span>
-  );
+  )
 
   return (
     <article className="p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors">
@@ -118,23 +113,18 @@ function PostCard({
           {wordCount && ` · ${wordCount} words`}
         </div>
       )}
-      {description && (
-        <p className="text-gray-600 text-sm mt-2">{description}</p>
-      )}
+      {description && <p className="text-gray-600 text-sm mt-2">{description}</p>}
       {tags && tags.length > 0 && (
         <div className="flex flex-wrap gap-1 mt-3">
           {tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded"
-            >
+            <span key={tag} className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
               {tag}
             </span>
           ))}
         </div>
       )}
     </article>
-  );
+  )
 }
 
 // Article card with image
@@ -147,13 +137,13 @@ function ArticleCard({
   content,
   rawData,
 }: {
-  title: string;
-  date?: string;
-  description?: string;
-  author?: string;
-  cover?: { src: string; blurDataURL: string };
-  content: string;
-  rawData?: object;
+  title: string
+  date?: string
+  description?: string
+  author?: string
+  cover?: { src: string; blurDataURL: string }
+  content: string
+  rawData?: object
 }) {
   return (
     <article className="p-4 border border-gray-200 rounded-lg">
@@ -167,7 +157,7 @@ function ArticleCard({
             placeholder="blur"
             blurDataURL={cover.blurDataURL}
             className="rounded object-cover flex-shrink-0 grayscale hover:grayscale-0 transition-all"
-            style={{ width: "auto", height: "auto" }}
+            style={{ width: 'auto', height: 'auto' }}
           />
         )}
         <div className="flex-1 min-w-0">
@@ -178,9 +168,7 @@ function ArticleCard({
               {author && ` · ${author}`}
             </div>
           )}
-          {description && (
-            <p className="text-gray-600 text-sm mt-1">{description}</p>
-          )}
+          {description && <p className="text-gray-600 text-sm mt-1">{description}</p>}
         </div>
       </div>
       {/* suppressHydrationWarning: velite watch mode can cause timing differences between server render and client hydration in dev */}
@@ -200,7 +188,7 @@ function ArticleCard({
         </details>
       )}
     </article>
-  );
+  )
 }
 
 export default async function Home() {
@@ -209,24 +197,14 @@ export default async function Home() {
       {/* Header */}
       <header className="border-b border-gray-200">
         <div className="max-w-3xl mx-auto px-4 py-6">
-          <h1 className="text-2xl font-bold tracking-tight">
-            Content Layer Systems
-          </h1>
-          <p className="text-gray-600 mt-1">
-            Comparing content management approaches in Next.js
-          </p>
+          <h1 className="text-2xl font-bold tracking-tight">Content Layer Systems</h1>
+          <p className="text-gray-600 mt-1">Comparing content management approaches in Next.js</p>
           <nav className="flex gap-4 mt-4 text-sm">
-            <Link
-              href="/keystatic"
-              className="text-gray-600 hover:text-gray-900 underline"
-            >
+            <Link href="/keystatic" className="text-gray-600 hover:text-gray-900 underline">
               Keystatic Admin
             </Link>
             <span className="text-gray-300">·</span>
-            <Link
-              href="/editorjs"
-              className="text-gray-600 hover:text-gray-900 underline"
-            >
+            <Link href="/editorjs" className="text-gray-600 hover:text-gray-900 underline">
               EditorJS Admin
             </Link>
           </nav>
@@ -243,22 +221,13 @@ export default async function Home() {
             <a href="#editorjs" className="text-gray-600 hover:text-gray-900">
               EditorJS
             </a>
-            <a
-              href="#velite-advanced"
-              className="text-gray-600 hover:text-gray-900"
-            >
+            <a href="#velite-advanced" className="text-gray-600 hover:text-gray-900">
               Advanced Velite
             </a>
-            <a
-              href="#data-formats"
-              className="text-gray-600 hover:text-gray-900"
-            >
+            <a href="#data-formats" className="text-gray-600 hover:text-gray-900">
               Data Formats
             </a>
-            <a
-              href="#contentlayer"
-              className="text-gray-600 hover:text-gray-900"
-            >
+            <a href="#contentlayer" className="text-gray-600 hover:text-gray-900">
               Contentlayer
             </a>
             <a href="#keystatic" className="text-gray-600 hover:text-gray-900">
@@ -275,22 +244,13 @@ export default async function Home() {
           id="velite"
           title="Velite"
           description="Modern content loader with custom transformations"
-          features={[
-            "Custom Loaders",
-            "Image Processing",
-            "Blur Placeholders",
-            "TOC Generation",
-          ]}
+          features={['Custom Loaders', 'Image Processing', 'Blur Placeholders', 'TOC Generation']}
         >
           {velitePosts.map((post) => (
             <ArticleCard
               key={post.slug}
               title={post.title}
-              date={
-                post.date
-                  ? format(parseISO(post.date), "MMM d, yyyy")
-                  : undefined
-              }
+              date={post.date ? format(parseISO(post.date), 'MMM d, yyyy') : undefined}
               description={post.description}
               author={post.author}
               cover={post.cover}
@@ -309,19 +269,14 @@ export default async function Home() {
           id="editorjs"
           title="EditorJS via Velite"
           description="Block-based JSON content with custom parser"
-          features={[
-            "Block Format",
-            "JSON Storage",
-            "Custom Parser",
-            "Metadata Files",
-          ]}
-          adminLink={{ href: "/editorjs", label: "Open Admin" }}
+          features={['Block Format', 'JSON Storage', 'Custom Parser', 'Metadata Files']}
+          adminLink={{ href: '/editorjs', label: 'Open Admin' }}
         >
           {veliteArticles.map((article, i) => (
             <ArticleCard
               key={i}
               title={article.title}
-              date={format(new Date(article.date), "MMM d, yyyy")}
+              date={format(new Date(article.date), 'MMM d, yyyy')}
               description={article.description}
               author={article.author}
               cover={article.cover}
@@ -341,11 +296,11 @@ export default async function Home() {
           title="Advanced Velite Features"
           description="Custom loaders, single-file collections, and parent-child relationships"
           features={[
-            "JSON5 Loader",
-            "HTML Loader",
-            "Single Collection",
-            "MDX Compilation",
-            "Parent-Child",
+            'JSON5 Loader',
+            'HTML Loader',
+            'Single Collection',
+            'MDX Compilation',
+            'Parent-Child',
           ]}
         >
           {/* Site Config - Single File Collection */}
@@ -359,37 +314,27 @@ export default async function Home() {
                 <span className="text-gray-500">name:</span> {siteConfig.name}
               </div>
               <div>
-                <span className="text-gray-500">version:</span>{" "}
-                {siteConfig.version}
+                <span className="text-gray-500">version:</span> {siteConfig.version}
               </div>
               {siteConfig.description && (
                 <div>
-                  <span className="text-gray-500">description:</span>{" "}
-                  {siteConfig.description}
+                  <span className="text-gray-500">description:</span> {siteConfig.description}
                 </div>
               )}
               <div>
-                <span className="text-gray-500">features:</span>{" "}
-                {siteConfig.features.join(", ")}
+                <span className="text-gray-500">features:</span> {siteConfig.features.join(', ')}
               </div>
             </div>
           </div>
 
           {/* MDX Pages */}
           {velitePages.map((page) => (
-            <article
-              key={page.slug}
-              className="p-4 border border-gray-200 rounded-lg"
-            >
+            <article key={page.slug} className="p-4 border border-gray-200 rounded-lg">
               <div className="flex justify-between items-start">
                 <h3 className="font-medium">{page.title}</h3>
-                <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
-                  MDX
-                </span>
+                <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">MDX</span>
               </div>
-              {page.description && (
-                <p className="text-gray-600 text-sm mt-1">{page.description}</p>
-              )}
+              {page.description && <p className="text-gray-600 text-sm mt-1">{page.description}</p>}
               <details className="mt-3">
                 <summary className="cursor-pointer text-xs text-gray-400 hover:text-gray-600 uppercase tracking-wide">
                   Compiled MDX Code
@@ -403,15 +348,10 @@ export default async function Home() {
 
           {/* HTML Pages */}
           {htmlPages.map((page) => (
-            <article
-              key={page.slug}
-              className="p-4 border border-gray-200 rounded-lg"
-            >
+            <article key={page.slug} className="p-4 border border-gray-200 rounded-lg">
               <div className="flex justify-between items-start">
                 <h3 className="font-medium">{page.title}</h3>
-                <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
-                  HTML
-                </span>
+                <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">HTML</span>
               </div>
               <div
                 className="prose prose-sm prose-gray max-w-none mt-3"
@@ -429,17 +369,12 @@ export default async function Home() {
             </p>
             <div className="mt-3 space-y-2">
               {velitePosts.map((post) => (
-                <div
-                  key={post.slug}
-                  className="text-sm flex items-center gap-2"
-                >
+                <div key={post.slug} className="text-sm flex items-center gap-2">
                   {post.parentSlug ? (
                     <>
                       <span className="text-gray-400">└─</span>
                       <span>{post.title}</span>
-                      <span className="text-xs text-gray-400">
-                        (child of {post.parentSlug})
-                      </span>
+                      <span className="text-xs text-gray-400">(child of {post.parentSlug})</span>
                     </>
                   ) : (
                     <>
@@ -459,25 +394,20 @@ export default async function Home() {
           id="data-formats"
           title="Data Format Demos"
           description="Different file formats used for content storage in static site generators"
-          features={["YAML", "CSV", "TOML", "Jekyll Filenames"]}
+          features={['YAML', 'CSV', 'TOML', 'Jekyll Filenames']}
         >
           {/* YAML Team Data */}
           <div className="p-4 border border-gray-200 rounded-lg">
             <div className="flex justify-between items-start">
               <h3 className="font-medium">Team Members (YAML)</h3>
-              <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
-                .yaml
-              </span>
+              <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">.yaml</span>
             </div>
             <p className="text-sm text-gray-500 mt-1">
               Structured data commonly stored in _data/ or data/ folders
             </p>
             <div className="mt-3 grid gap-3">
               {team.members.map((member) => (
-                <div
-                  key={member.name}
-                  className="flex items-center gap-3 p-2 bg-gray-50 rounded"
-                >
+                <div key={member.name} className="flex items-center gap-3 p-2 bg-gray-50 rounded">
                   <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-sm">
                     {member.name.charAt(0)}
                   </div>
@@ -487,12 +417,8 @@ export default async function Home() {
                   </div>
                   {member.social && (
                     <div className="ml-auto flex gap-2 text-xs text-gray-400">
-                      {member.social.github && (
-                        <span>gh:{member.social.github}</span>
-                      )}
-                      {member.social.twitter && (
-                        <span>{member.social.twitter}</span>
-                      )}
+                      {member.social.github && <span>gh:{member.social.github}</span>}
+                      {member.social.twitter && <span>{member.social.twitter}</span>}
                     </div>
                   )}
                 </div>
@@ -504,9 +430,7 @@ export default async function Home() {
           <div className="p-4 border border-gray-200 rounded-lg">
             <div className="flex justify-between items-start">
               <h3 className="font-medium">Site Navigation (YAML)</h3>
-              <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
-                .yaml
-              </span>
+              <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">.yaml</span>
             </div>
             <p className="text-sm text-gray-500 mt-1">
               Hierarchical navigation with nested children
@@ -514,13 +438,9 @@ export default async function Home() {
             <div className="mt-3 flex flex-wrap gap-2">
               {navigation.main.map((item) => (
                 <div key={item.href} className="text-sm">
-                  <span className="px-2 py-1 bg-gray-100 rounded">
-                    {item.label}
-                  </span>
+                  <span className="px-2 py-1 bg-gray-100 rounded">{item.label}</span>
                   {item.children && (
-                    <span className="text-xs text-gray-400 ml-1">
-                      (+{item.children.length})
-                    </span>
+                    <span className="text-xs text-gray-400 ml-1">(+{item.children.length})</span>
                   )}
                 </div>
               ))}
@@ -531,9 +451,7 @@ export default async function Home() {
           <div className="p-4 border border-gray-200 rounded-lg">
             <div className="flex justify-between items-start">
               <h3 className="font-medium">Products Table (CSV)</h3>
-              <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
-                .csv
-              </span>
+              <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">.csv</span>
             </div>
             <p className="text-sm text-gray-500 mt-1">
               Spreadsheet-like data for pricing, catalogs, etc.
@@ -542,18 +460,10 @@ export default async function Home() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-200">
-                    <th className="text-left py-2 pr-4 font-medium text-gray-600">
-                      Name
-                    </th>
-                    <th className="text-right py-2 pr-4 font-medium text-gray-600">
-                      Price
-                    </th>
-                    <th className="text-left py-2 pr-4 font-medium text-gray-600">
-                      Category
-                    </th>
-                    <th className="text-center py-2 font-medium text-gray-600">
-                      Stock
-                    </th>
+                    <th className="text-left py-2 pr-4 font-medium text-gray-600">Name</th>
+                    <th className="text-right py-2 pr-4 font-medium text-gray-600">Price</th>
+                    <th className="text-left py-2 pr-4 font-medium text-gray-600">Category</th>
+                    <th className="text-center py-2 font-medium text-gray-600">Stock</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -561,11 +471,9 @@ export default async function Home() {
                     <tr key={row.id} className="border-b border-gray-100">
                       <td className="py-2 pr-4">{row.name}</td>
                       <td className="py-2 pr-4 text-right">${row.price}</td>
-                      <td className="py-2 pr-4 text-gray-500">
-                        {row.category}
-                      </td>
+                      <td className="py-2 pr-4 text-gray-500">{row.category}</td>
                       <td className="py-2 text-center">
-                        {row.inStock === "true" ? (
+                        {row.inStock === 'true' ? (
                           <span className="text-green-600">●</span>
                         ) : (
                           <span className="text-gray-300">○</span>
@@ -576,9 +484,7 @@ export default async function Home() {
                 </tbody>
               </table>
               {products.rows.length > 5 && (
-                <p className="text-xs text-gray-400 mt-2">
-                  +{products.rows.length - 5} more items
-                </p>
+                <p className="text-xs text-gray-400 mt-2">+{products.rows.length - 5} more items</p>
               )}
             </div>
           </div>
@@ -587,9 +493,7 @@ export default async function Home() {
           <div className="p-4 border border-gray-200 rounded-lg">
             <div className="flex justify-between items-start">
               <h3 className="font-medium">Hugo Configuration (TOML)</h3>
-              <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
-                .toml
-              </span>
+              <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">.toml</span>
             </div>
             <p className="text-sm text-gray-500 mt-1">
               Hugo-style site configuration - popular in Go/Rust ecosystems
@@ -624,7 +528,7 @@ export default async function Home() {
                   )}
                   {hugoConfig.params.showReadingTime !== undefined && (
                     <div>
-                      <span className="text-gray-500">showReadingTime =</span>{" "}
+                      <span className="text-gray-500">showReadingTime =</span>{' '}
                       {String(hugoConfig.params.showReadingTime)}
                     </div>
                   )}
@@ -651,20 +555,15 @@ export default async function Home() {
                     <h4 className="font-medium text-sm">{post.title}</h4>
                     {post.date && (
                       <span className="text-xs text-gray-500">
-                        {format(parseISO(post.date), "MMM d, yyyy")}
+                        {format(parseISO(post.date), 'MMM d, yyyy')}
                       </span>
                     )}
                   </div>
-                  <div className="text-xs text-gray-500 mt-1 font-mono">
-                    {post.permalink}
-                  </div>
+                  <div className="text-xs text-gray-500 mt-1 font-mono">{post.permalink}</div>
                   {post.categories && post.categories.length > 0 && (
                     <div className="flex gap-1 mt-2">
                       {post.categories.map((cat) => (
-                        <span
-                          key={cat}
-                          className="text-xs px-1.5 py-0.5 bg-gray-200 rounded"
-                        >
+                        <span key={cat} className="text-xs px-1.5 py-0.5 bg-gray-200 rounded">
                           {cat}
                         </span>
                       ))}
@@ -681,19 +580,14 @@ export default async function Home() {
           id="contentlayer"
           title="Contentlayer"
           description="Type-safe content layer with generated TypeScript types"
-          features={[
-            "Type Generation",
-            "Computed Fields",
-            "Hot Reload",
-            "MDX Support",
-          ]}
+          features={['Type Generation', 'Computed Fields', 'Hot Reload', 'MDX Support']}
         >
           {contentLayerPosts.map((post) => (
             <PostCard
               key={post._id}
               title={post.title}
               href={post.url}
-              date={format(parseISO(post.date), "MMM d, yyyy")}
+              date={format(parseISO(post.date), 'MMM d, yyyy')}
               description={post.description}
               author={post.author}
               tags={post.tags}
@@ -709,8 +603,8 @@ export default async function Home() {
           id="keystatic"
           title="Keystatic"
           description="Git-backed CMS with visual admin interface"
-          features={["Admin UI", "Git Storage", "Markdoc", "Live Preview"]}
-          adminLink={{ href: "/keystatic", label: "Open Admin" }}
+          features={['Admin UI', 'Git Storage', 'Markdoc', 'Live Preview']}
+          adminLink={{ href: '/keystatic', label: 'Open Admin' }}
         >
           {keystaticPosts.map((post) => (
             <PostCard
@@ -718,7 +612,7 @@ export default async function Home() {
               title={String(post.entry.title)}
               date={
                 post.entry.publishedDate
-                  ? format(new Date(post.entry.publishedDate), "MMM d, yyyy")
+                  ? format(new Date(post.entry.publishedDate), 'MMM d, yyyy')
                   : undefined
               }
               description={post.entry.description ?? undefined}
@@ -737,5 +631,5 @@ export default async function Home() {
         </div>
       </footer>
     </div>
-  );
+  )
 }

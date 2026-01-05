@@ -1,9 +1,9 @@
 ---
-title: "TypeScript Type Safety with Contentlayer"
+title: 'TypeScript Type Safety with Contentlayer'
 date: 2024-12-26
-description: "Learn how Contentlayer provides compile-time type safety for your content"
-author: "Demo Author"
-tags: ["typescript", "contentlayer", "type-safety"]
+description: 'Learn how Contentlayer provides compile-time type safety for your content'
+author: 'Demo Author'
+tags: ['typescript', 'contentlayer', 'type-safety']
 featured: true
 ---
 
@@ -16,13 +16,13 @@ Contentlayer generates TypeScript types from your content schema, giving you ful
 When you define a document type, Contentlayer automatically generates TypeScript interfaces:
 
 ```typescript
-import { allPosts, Post } from "contentlayer/generated";
+import { allPosts, Post } from 'contentlayer/generated'
 
 // Full type safety - IDE autocomplete works!
-const post: Post = allPosts[0];
-console.log(post.title); // string
-console.log(post.date); // string (ISO date)
-console.log(post.url); // string (computed)
+const post: Post = allPosts[0]
+console.log(post.title) // string
+console.log(post.date) // string (ISO date)
+console.log(post.url) // string (computed)
 ```
 
 ## Key Benefits

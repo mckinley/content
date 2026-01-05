@@ -1,67 +1,67 @@
-"use client";
+'use client'
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import Link from "next/link";
-import EditorJS, { OutputData, ToolConstructable } from "@editorjs/editorjs";
-import Header from "@editorjs/header";
-import List from "@editorjs/list";
-import Code from "@editorjs/code";
-import Quote from "@editorjs/quote";
+import { useState, useEffect, useRef, useCallback } from 'react'
+import Link from 'next/link'
+import EditorJS, { OutputData, ToolConstructable } from '@editorjs/editorjs'
+import Header from '@editorjs/header'
+import List from '@editorjs/list'
+import Code from '@editorjs/code'
+import Quote from '@editorjs/quote'
 
 // Type assertion for EditorJS tools (their types are not fully compatible)
-const HeaderTool = Header as unknown as ToolConstructable;
-const ListTool = List as unknown as ToolConstructable;
-const CodeTool = Code as unknown as ToolConstructable;
-const QuoteTool = Quote as unknown as ToolConstructable;
+const HeaderTool = Header as unknown as ToolConstructable
+const ListTool = List as unknown as ToolConstructable
+const CodeTool = Code as unknown as ToolConstructable
+const QuoteTool = Quote as unknown as ToolConstructable
 
 interface Article {
-  slug: string;
-  title: string;
+  slug: string
+  title: string
 }
 
 interface ArticleMeta {
-  title: string;
-  slug?: string;
-  description?: string;
-  author?: string;
-  date?: string;
-  array?: string[];
-  object?: { key: string };
+  title: string
+  slug?: string
+  description?: string
+  author?: string
+  date?: string
+  array?: string[]
+  object?: { key: string }
 }
 
 export default function EditorJSApp() {
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
+  const [articles, setArticles] = useState<Article[]>([])
+  const [selectedSlug, setSelectedSlug] = useState<string | null>(null)
   const [meta, setMeta] = useState<ArticleMeta>({
-    title: "",
-    description: "",
-    author: "",
-    date: new Date().toISOString().split("T")[0],
-  });
-  const [saving, setSaving] = useState(false);
+    title: '',
+    description: '',
+    author: '',
+    date: new Date().toISOString().split('T')[0],
+  })
+  const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState<{
-    type: "success" | "error";
-    text: string;
-  } | null>(null);
+    type: 'success' | 'error'
+    text: string
+  } | null>(null)
 
-  const editorRef = useRef<EditorJS | null>(null);
-  const editorContainerRef = useRef<HTMLDivElement>(null);
+  const editorRef = useRef<EditorJS | null>(null)
+  const editorContainerRef = useRef<HTMLDivElement>(null)
 
   // Load articles list
   useEffect(() => {
-    fetch("/api/editorjs")
+    fetch('/api/editorjs')
       .then((r) => r.json())
-      .then((data) => setArticles(data.articles || []));
-  }, []);
+      .then((data) => setArticles(data.articles || []))
+  }, [])
 
   // Initialize editor
   const initEditor = useCallback((data?: OutputData) => {
     if (editorRef.current) {
-      editorRef.current.destroy();
-      editorRef.current = null;
+      editorRef.current.destroy()
+      editorRef.current = null
     }
 
-    if (!editorContainerRef.current) return;
+    if (!editorContainerRef.current) return
 
     const editor = new EditorJS({
       holder: editorContainerRef.current,
@@ -87,17 +87,17 @@ export default function EditorJSApp() {
         time: Date.now(),
         blocks: [
           {
-            type: "paragraph",
-            data: { text: "Start writing..." },
+            type: 'paragraph',
+            data: { text: 'Start writing...' },
           },
         ],
       },
-      placeholder: "Start writing your article...",
+      placeholder: 'Start writing your article...',
       autofocus: true,
-    });
+    })
 
-    editorRef.current = editor;
-  }, []);
+    editorRef.current = editor
+  }, [])
 
   // Load selected article
   useEffect(() => {
@@ -106,33 +106,33 @@ export default function EditorJSApp() {
         .then((r) => r.json())
         .then((data) => {
           setMeta({
-            title: data.meta?.title || "",
+            title: data.meta?.title || '',
             slug: data.meta?.slug || selectedSlug,
-            description: data.meta?.description || "",
-            author: data.meta?.author || "",
+            description: data.meta?.description || '',
+            author: data.meta?.author || '',
             date: data.meta?.date
-              ? data.meta.date.split("T")[0]
-              : new Date().toISOString().split("T")[0],
+              ? data.meta.date.split('T')[0]
+              : new Date().toISOString().split('T')[0],
             array: data.meta?.array || [],
-            object: data.meta?.object || { key: "" },
-          });
-          initEditor(data.content);
-        });
+            object: data.meta?.object || { key: '' },
+          })
+          initEditor(data.content)
+        })
     }
-  }, [selectedSlug, initEditor]);
+  }, [selectedSlug, initEditor])
 
   const handleSave = async () => {
-    if (!selectedSlug || !editorRef.current) return;
+    if (!selectedSlug || !editorRef.current) return
 
-    setSaving(true);
-    setMessage(null);
+    setSaving(true)
+    setMessage(null)
 
     try {
-      const content = await editorRef.current.save();
+      const content = await editorRef.current.save()
 
-      const response = await fetch("/api/editorjs", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/editorjs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           slug: selectedSlug,
           content,
@@ -141,38 +141,38 @@ export default function EditorJSApp() {
             date: new Date(meta.date || Date.now()).toISOString(),
           },
         }),
-      });
+      })
 
       if (response.ok) {
-        setMessage({ type: "success", text: "Saved successfully" });
+        setMessage({ type: 'success', text: 'Saved successfully' })
         // Refresh articles list
-        const listResponse = await fetch("/api/editorjs");
-        const listData = await listResponse.json();
-        setArticles(listData.articles || []);
+        const listResponse = await fetch('/api/editorjs')
+        const listData = await listResponse.json()
+        setArticles(listData.articles || [])
       } else {
-        setMessage({ type: "error", text: "Failed to save" });
+        setMessage({ type: 'error', text: 'Failed to save' })
       }
     } catch {
-      setMessage({ type: "error", text: "Error saving article" });
+      setMessage({ type: 'error', text: 'Error saving article' })
     }
 
-    setSaving(false);
-  };
+    setSaving(false)
+  }
 
   const handleNew = () => {
-    const slug = prompt("Enter slug for new article (e.g., article-03):");
-    if (!slug) return;
+    const slug = prompt('Enter slug for new article (e.g., article-03):')
+    if (!slug) return
 
-    setSelectedSlug(slug);
+    setSelectedSlug(slug)
     setMeta({
-      title: "New Article",
+      title: 'New Article',
       slug: slug,
-      description: "",
-      author: "",
-      date: new Date().toISOString().split("T")[0],
+      description: '',
+      author: '',
+      date: new Date().toISOString().split('T')[0],
       array: [],
-      object: { key: "" },
-    });
+      object: { key: '' },
+    })
 
     // Initialize with empty editor
     setTimeout(() => {
@@ -180,41 +180,41 @@ export default function EditorJSApp() {
         time: Date.now(),
         blocks: [
           {
-            type: "paragraph",
-            data: { text: "Start writing..." },
+            type: 'paragraph',
+            data: { text: 'Start writing...' },
           },
         ],
-      });
-    }, 0);
-  };
+      })
+    }, 0)
+  }
 
   const handleDelete = async () => {
-    if (!selectedSlug) return;
-    if (!confirm(`Delete article "${selectedSlug}"?`)) return;
+    if (!selectedSlug) return
+    if (!confirm(`Delete article "${selectedSlug}"?`)) return
 
     const response = await fetch(`/api/editorjs?slug=${selectedSlug}`, {
-      method: "DELETE",
-    });
+      method: 'DELETE',
+    })
 
     if (response.ok) {
-      setSelectedSlug(null);
+      setSelectedSlug(null)
       setMeta({
-        title: "",
-        description: "",
-        author: "",
-        date: new Date().toISOString().split("T")[0],
-      });
+        title: '',
+        description: '',
+        author: '',
+        date: new Date().toISOString().split('T')[0],
+      })
       if (editorRef.current) {
-        editorRef.current.destroy();
-        editorRef.current = null;
+        editorRef.current.destroy()
+        editorRef.current = null
       }
       // Refresh list
-      const listResponse = await fetch("/api/editorjs");
-      const listData = await listResponse.json();
-      setArticles(listData.articles || []);
-      setMessage({ type: "success", text: "Article deleted" });
+      const listResponse = await fetch('/api/editorjs')
+      const listData = await listResponse.json()
+      setArticles(listData.articles || [])
+      setMessage({ type: 'success', text: 'Article deleted' })
     }
-  };
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -225,10 +225,7 @@ export default function EditorJSApp() {
             <h1 className="text-xl font-bold tracking-tight">EditorJS</h1>
             <p className="text-gray-600 text-sm">Block-based content editor</p>
           </div>
-          <Link
-            href="/"
-            className="text-sm text-gray-600 hover:text-gray-900 underline"
-          >
+          <Link href="/" className="text-sm text-gray-600 hover:text-gray-900 underline">
             Back to Demo
           </Link>
         </div>
@@ -255,22 +252,16 @@ export default function EditorJSApp() {
                   <button
                     onClick={() => setSelectedSlug(article.slug)}
                     className={`w-full text-left px-3 py-2 rounded text-sm ${
-                      selectedSlug === article.slug
-                        ? "bg-gray-100 font-medium"
-                        : "hover:bg-gray-50"
+                      selectedSlug === article.slug ? 'bg-gray-100 font-medium' : 'hover:bg-gray-50'
                     }`}
                   >
                     {article.title}
-                    <span className="block text-xs text-gray-400">
-                      {article.slug}
-                    </span>
+                    <span className="block text-xs text-gray-400">{article.slug}</span>
                   </button>
                 </li>
               ))}
               {articles.length === 0 && (
-                <li className="text-sm text-gray-400 px-3 py-2">
-                  No articles yet
-                </li>
+                <li className="text-sm text-gray-400 px-3 py-2">No articles yet</li>
               )}
             </ul>
           </aside>
@@ -283,9 +274,9 @@ export default function EditorJSApp() {
                 {message && (
                   <div
                     className={`px-4 py-2 rounded text-sm ${
-                      message.type === "success"
-                        ? "bg-gray-100 text-gray-800"
-                        : "bg-red-50 text-red-800"
+                      message.type === 'success'
+                        ? 'bg-gray-100 text-gray-800'
+                        : 'bg-red-50 text-red-800'
                     }`}
                   >
                     {message.text}
@@ -301,9 +292,7 @@ export default function EditorJSApp() {
                     <input
                       type="text"
                       value={meta.title}
-                      onChange={(e) =>
-                        setMeta({ ...meta, title: e.target.value })
-                      }
+                      onChange={(e) => setMeta({ ...meta, title: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-200 rounded text-sm focus:outline-none focus:border-gray-400"
                     />
                   </div>
@@ -313,10 +302,8 @@ export default function EditorJSApp() {
                     </label>
                     <input
                       type="text"
-                      value={meta.author || ""}
-                      onChange={(e) =>
-                        setMeta({ ...meta, author: e.target.value })
-                      }
+                      value={meta.author || ''}
+                      onChange={(e) => setMeta({ ...meta, author: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-200 rounded text-sm focus:outline-none focus:border-gray-400"
                     />
                   </div>
@@ -325,10 +312,8 @@ export default function EditorJSApp() {
                       Description
                     </label>
                     <textarea
-                      value={meta.description || ""}
-                      onChange={(e) =>
-                        setMeta({ ...meta, description: e.target.value })
-                      }
+                      value={meta.description || ''}
+                      onChange={(e) => setMeta({ ...meta, description: e.target.value })}
                       rows={2}
                       className="w-full px-3 py-2 border border-gray-200 rounded text-sm focus:outline-none focus:border-gray-400"
                     />
@@ -339,10 +324,8 @@ export default function EditorJSApp() {
                     </label>
                     <input
                       type="date"
-                      value={meta.date || ""}
-                      onChange={(e) =>
-                        setMeta({ ...meta, date: e.target.value })
-                      }
+                      value={meta.date || ''}
+                      onChange={(e) => setMeta({ ...meta, date: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-200 rounded text-sm focus:outline-none focus:border-gray-400"
                     />
                   </div>
@@ -381,10 +364,10 @@ export default function EditorJSApp() {
                   <div className="flex gap-3">
                     <button
                       onClick={() => {
-                        setSelectedSlug(null);
+                        setSelectedSlug(null)
                         if (editorRef.current) {
-                          editorRef.current.destroy();
-                          editorRef.current = null;
+                          editorRef.current.destroy()
+                          editorRef.current = null
                         }
                       }}
                       className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900"
@@ -396,7 +379,7 @@ export default function EditorJSApp() {
                       disabled={saving}
                       className="px-4 py-2 text-sm bg-gray-900 text-white rounded hover:bg-gray-700 disabled:opacity-50"
                     >
-                      {saving ? "Saving..." : "Save"}
+                      {saving ? 'Saving...' : 'Save'}
                     </button>
                   </div>
                 </div>
@@ -408,28 +391,20 @@ export default function EditorJSApp() {
                   </summary>
                   <div className="mt-4 text-sm text-gray-600 space-y-2">
                     <p>
-                      <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-xs">
-                        Tab
-                      </kbd>{" "}
-                      - Show block menu
+                      <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-xs">Tab</kbd> - Show
+                      block menu
                     </p>
                     <p>
-                      <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-xs">
-                        /
-                      </kbd>{" "}
-                      - Quick block search
+                      <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-xs">/</kbd> - Quick
+                      block search
                     </p>
                     <p>
-                      <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-xs">
-                        Enter
-                      </kbd>{" "}
-                      - New paragraph
+                      <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-xs">Enter</kbd> - New
+                      paragraph
                     </p>
                     <p>
-                      <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-xs">
-                        Backspace
-                      </kbd>{" "}
-                      on empty block - Delete block
+                      <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-xs">Backspace</kbd> on
+                      empty block - Delete block
                     </p>
                   </div>
                 </details>
@@ -444,5 +419,5 @@ export default function EditorJSApp() {
         </div>
       </div>
     </div>
-  );
+  )
 }

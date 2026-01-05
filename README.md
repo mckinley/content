@@ -82,13 +82,13 @@ Features demonstrated:
 - Markdown to HTML conversion
 
 ```typescript
-import { allPosts, Post } from "contentlayer/generated";
+import { allPosts, Post } from 'contentlayer/generated'
 
 // Fully typed - IDE autocomplete works!
-const post: Post = allPosts[0];
-console.log(post.title); // string
-console.log(post.readingTime); // number (computed)
-console.log(post.url); // string (computed)
+const post: Post = allPosts[0]
+console.log(post.title) // string
+console.log(post.readingTime) // number (computed)
+console.log(post.url) // string (computed)
 ```
 
 ### Keystatic
@@ -156,11 +156,11 @@ Create `content/contentlayer/posts/my-post.md`:
 
 ```markdown
 ---
-title: "My New Post"
+title: 'My New Post'
 date: 2024-12-28
-description: "Post description"
-author: "Your Name"
-tags: ["tag1", "tag2"]
+description: 'Post description'
+author: 'Your Name'
+tags: ['tag1', 'tag2']
 featured: true
 ---
 
@@ -192,11 +192,11 @@ Create `content/velite/posts/my-post.md`:
 
 ```markdown
 ---
-title: "My Velite Post"
+title: 'My Velite Post'
 date: 2024-12-28
-description: "Post description"
-author: "Your Name"
-tags: ["velite", "demo"]
+description: 'Post description'
+author: 'Your Name'
+tags: ['velite', 'demo']
 cover: ../files/cover.jpeg
 ---
 

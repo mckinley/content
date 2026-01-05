@@ -3,7 +3,7 @@ title: Getting Started with Contentlayer
 date: 2024-12-20
 description: A quick introduction to using Contentlayer in your Next.js project
 author: Demo Author
-tags: ["contentlayer", "getting-started", "tutorial"]
+tags: ['contentlayer', 'getting-started', 'tutorial']
 ---
 
 # Getting Started
