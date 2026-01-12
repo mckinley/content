@@ -4,7 +4,9 @@ date: 2024-12-26
 description: 'How Velite automatically optimizes images with blur placeholders'
 author: 'Demo Author'
 tags: ['velite', 'images', 'optimization', 'next.js']
-cover: ../files/cover.jpeg
+cover:
+  src: media/posts/cover.jpeg
+  alt: 'Cover image for image processing article'
 parentSlug: null
 ---
 

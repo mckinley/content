@@ -34,8 +34,10 @@
           "label": "Tags"
         },
         "cover": {
-          "type": "text",
-          "label": "Cover"
+          "type": "image",
+          "label": "Cover Image",
+          "description": "Featured image for this post",
+          "directory": "media/posts"
         },
         "metadata": {
           "type": "text",
@@ -93,8 +95,10 @@
           "label": "Key"
         },
         "cover": {
-          "type": "text",
-          "label": "Cover"
+          "type": "image",
+          "label": "Cover Image",
+          "description": "Featured image for this article",
+          "directory": "media/posts"
         }
       }
     },
@@ -197,6 +201,12 @@
         "features": {
           "type": "array",
           "label": "Features"
+        },
+        "heroImage": {
+          "type": "image",
+          "label": "Hero Image",
+          "description": "Landing page background image",
+          "directory": "media/site"
         }
       }
     },
@@ -222,8 +232,10 @@
           "label": "Bio"
         },
         "avatar": {
-          "type": "text",
-          "label": "Avatar"
+          "type": "image",
+          "label": "Avatar",
+          "description": "Team member photo",
+          "directory": "media/team"
         },
         "twitter": {
           "type": "text",
@@ -341,5 +353,8 @@
       }
     }
   ],
-  "team": []
+  "team": [],
+  "media": {
+    "path": "media"
+  }
 }
