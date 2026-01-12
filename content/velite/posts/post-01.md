@@ -11,7 +11,7 @@ slug: post-slug
 
 # What is Velite?
 
-Velite is a modern content layer that transforms your markdown, MDX, and other content formats into type-safe data for your Next.js application. yes!
+Velite is a modern content layer that transforms your markdown, MDX, and other content formats into type-safe data for your Next.js application. yes! Y
 
 ## Key Features
 
