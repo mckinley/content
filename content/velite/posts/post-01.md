@@ -1,6 +1,6 @@
 ---
 title: Introduction to Velite
-date: '2024-12-20T00:00:00.000Z'
+date: "2024-12-20T00:00:00.000Z"
 description: A modern content layer for Next.js with powerful transformation capabilities
 author: Demo Author
 tags: ['velite', 'introduction', 'next.js']
@@ -11,14 +11,14 @@ slug: post-slug
 
 # What is Velite?
 
-Velite is a modern content layer that transforms your markdown, MDX, and other content formats into type-safe data for your Next.js application. yes!
+Velite is a modern content layer that transforms your markdown, MDX, and other content formats into type-safe data for your Next.js application. yes! Yas!
 
 ## Key Features
 
-- **Custom Loaders** - Support any file format
-- **Image Processing** - Automatic optimization and blur placeholders
-- **Type Safety** - Full TypeScript support
-- **Flexible Schema** - Define complex content structures
+* **Custom Loaders** - Support any file format
+* **Image Processing** - Automatic optimization and blur placeholders
+* **Type Safety** - Full TypeScript support
+* **Flexible Schema** - Define complex content structures
 
 ## Getting Started
 
@@ -43,7 +43,7 @@ export default defineConfig({
 
 Velite automatically processes images:
 
-![Velite processes images at build time](../files/img.png)
+![Velite processes images at build time](../files/img.png "Velite processes images at build time")
 
 Images get blur placeholders and optimized paths.
 
