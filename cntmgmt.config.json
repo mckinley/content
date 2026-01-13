@@ -34,10 +34,8 @@
           "label": "Tags"
         },
         "cover": {
-          "type": "image",
-          "label": "Cover Image",
-          "description": "Featured image for this post",
-          "directory": "media/posts"
+          "type": "text",
+          "label": "Cover"
         },
         "metadata": {
           "type": "text",
@@ -95,10 +93,8 @@
           "label": "Key"
         },
         "cover": {
-          "type": "image",
-          "label": "Cover Image",
-          "description": "Featured image for this article",
-          "directory": "media/posts"
+          "type": "text",
+          "label": "Cover"
         }
       }
     },
@@ -178,6 +174,37 @@
           "label": "Raw Path"
         }
       }
+    },
+    {
+      "name": "post",
+      "path": "content/contentlayer/posts",
+      "source": "manual",
+      "schema": {
+        "title": {
+          "type": "text",
+          "label": "Title"
+        },
+        "date": {
+          "type": "date",
+          "label": "Date"
+        },
+        "description": {
+          "type": "text",
+          "label": "Description"
+        },
+        "author": {
+          "type": "text",
+          "label": "Author"
+        },
+        "tags": {
+          "type": "array",
+          "label": "Tags"
+        },
+        "featured": {
+          "type": "boolean",
+          "label": "Featured"
+        }
+      }
     }
   ],
   "items": [
@@ -201,12 +228,6 @@
         "features": {
           "type": "array",
           "label": "Features"
-        },
-        "heroImage": {
-          "type": "image",
-          "label": "Hero Image",
-          "description": "Landing page background image",
-          "directory": "media/site"
         }
       }
     },
@@ -232,10 +253,8 @@
           "label": "Bio"
         },
         "avatar": {
-          "type": "image",
-          "label": "Avatar",
-          "description": "Team member photo",
-          "directory": "media/team"
+          "type": "text",
+          "label": "Avatar"
         },
         "twitter": {
           "type": "text",
@@ -353,8 +372,5 @@
       }
     }
   ],
-  "team": [],
-  "media": {
-    "path": "media"
-  }
+  "team": []
 }

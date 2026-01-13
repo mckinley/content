@@ -43,8 +43,6 @@ export default defineConfig({
 
 Velite automatically processes images:
 
-![Velite processes images at build time](../files/img.png "Velite processes images at build time")
-
 Images get blur placeholders and optimized paths.
 
 ## Related Resources
