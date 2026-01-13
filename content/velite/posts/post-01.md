@@ -1,5 +1,5 @@
 ---
-title: Introduction to Velite
+title: Introduction to Velite (Edited)
 date: "2024-12-20T00:00:00.000Z"
 description: A modern content layer for Next.js with powerful transformation capabilities
 author: Demo Author
