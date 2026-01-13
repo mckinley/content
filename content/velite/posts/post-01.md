@@ -15,14 +15,10 @@ Velite is a modern content layer that transforms your markdown, MDX, and other c
 
 ## Key Features
 
--   **Custom Loaders** - Support any file format
-    
--   **Image Processing** - Automatic optimization and blur placeholders
-    
--   **Type Safety** - Full TypeScript support
-    
--   **Flexible Schema** - Define complex content structures
-    
+* **Custom Loaders** - Support any file format
+* **Image Processing** - Automatic optimization and blur placeholders
+* **Type Safety** - Full TypeScript support
+* **Flexible Schema** - Define complex content structures
 
 ## Getting Started
 
