@@ -2,16 +2,24 @@
   "collections": [
     {
       "name": "posts",
-      "path": "content/keystatic/posts",
+      "path": "content/velite/posts",
       "source": "manual",
       "schema": {
         "title": {
           "type": "text",
           "label": "Title"
         },
-        "publishedDate": {
+        "slug": {
+          "type": "text",
+          "label": "Slug"
+        },
+        "parentSlug": {
+          "type": "text",
+          "label": "Parent Slug"
+        },
+        "date": {
           "type": "date",
-          "label": "Published Date"
+          "label": "Date"
         },
         "description": {
           "type": "text",
@@ -21,17 +29,29 @@
           "type": "text",
           "label": "Author"
         },
-        "featured": {
-          "type": "boolean",
-          "label": "Featured"
-        },
         "tags": {
           "type": "array",
           "label": "Tags"
         },
+        "cover": {
+          "type": "text",
+          "label": "Cover"
+        },
+        "metadata": {
+          "type": "text",
+          "label": "Metadata"
+        },
         "content": {
-          "type": "content",
+          "type": "text",
           "label": "Content"
+        },
+        "excerpt": {
+          "type": "text",
+          "label": "Excerpt"
+        },
+        "toc": {
+          "type": "text",
+          "label": "Toc"
         }
       }
     },
