@@ -1,0 +1,9 @@
+name = "content"
+compatibility_date = "2025-03-28"
+
+[assets]
+directory = "./dist"
+
+[[routes]]
+pattern = "content.cntmgmt.com"
+custom_domain = true

@@ -1,0 +1,10 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import EditorJSApp from '../../components/EditorJSApp'
+
+export const prerender = false
+---
+
+<Layout title="EditorJS Admin">
+  <EditorJSApp client:only="react" />
+</Layout>
