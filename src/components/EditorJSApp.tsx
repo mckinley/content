@@ -159,7 +159,12 @@ export default function EditorJSApp() {
     const response = await fetch(`/api/editorjs?slug=${selectedSlug}`, { method: 'DELETE' })
     if (response.ok) {
       setSelectedSlug(null)
-      setMeta({ title: '', description: '', author: '', date: new Date().toISOString().split('T')[0] })
+      setMeta({
+        title: '',
+        description: '',
+        author: '',
+        date: new Date().toISOString().split('T')[0],
+      })
       if (editorRef.current) {
         editorRef.current.destroy()
         editorRef.current = null
@@ -189,7 +194,9 @@ export default function EditorJSApp() {
         <div className="flex gap-6">
           <aside className="w-56 flex-shrink-0">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="font-medium text-sm uppercase tracking-wide text-gray-500">Articles</h2>
+              <h2 className="font-medium text-sm uppercase tracking-wide text-gray-500">
+                Articles
+              </h2>
               <button
                 onClick={handleNew}
                 className="text-xs px-2 py-1 bg-gray-900 text-white rounded hover:bg-gray-700"
@@ -223,7 +230,9 @@ export default function EditorJSApp() {
                 {message && (
                   <div
                     className={`px-4 py-2 rounded text-sm ${
-                      message.type === 'success' ? 'bg-gray-100 text-gray-800' : 'bg-red-50 text-red-800'
+                      message.type === 'success'
+                        ? 'bg-gray-100 text-gray-800'
+                        : 'bg-red-50 text-red-800'
                     }`}
                   >
                     {message.text}
@@ -299,7 +308,10 @@ export default function EditorJSApp() {
                 </div>
 
                 <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                  <button onClick={handleDelete} className="text-sm text-red-600 hover:text-red-800">
+                  <button
+                    onClick={handleDelete}
+                    className="text-sm text-red-600 hover:text-red-800"
+                  >
                     Delete
                   </button>
                   <div className="flex gap-3">

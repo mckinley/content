@@ -6,10 +6,7 @@ import keystatic from '@keystatic/astro'
 
 export default defineConfig({
   adapter: cloudflare(),
-  integrations: [
-    react(),
-    keystatic(),
-  ],
+  integrations: [react(), keystatic()],
   vite: {
     plugins: [tailwindcss()],
     resolve: {

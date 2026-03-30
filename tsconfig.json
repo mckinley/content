@@ -9,12 +9,6 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   },
-  "include": [
-    "src",
-    ".velite",
-    "velite.config.ts",
-    "keystatic.config.ts",
-    "astro.config.ts"
-  ],
+  "include": ["src", ".velite", "velite.config.ts", "keystatic.config.ts", "astro.config.ts"],
   "exclude": ["node_modules", "dist"]
 }

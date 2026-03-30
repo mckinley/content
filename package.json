@@ -16,9 +16,9 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "tc": "astro check",
-    "check": "npm run format:check && npm run lint && npm run tc",
-    "prep": "npm run format && npm run lint:fix",
-    "ci": "npm run check"
+    "check": "bun run format:check && bun run lint && bun run tc",
+    "prep": "bun run format && bun run lint:fix",
+    "ci": "bun run check"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.0.0",
@@ -44,6 +44,8 @@
     "yaml": "^2.8.3"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@eslint/js": "^10.0.1",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.2",
     "@types/jsdom": "^27.0.0",
@@ -51,10 +53,12 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.2",
+    "globals": "^17.4.0",
     "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.0",
     "tailwindcss": "^4.2.2",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.57.2",
     "velite": "^0.2.4"
   }
 }

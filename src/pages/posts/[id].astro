@@ -1,14 +1,18 @@
 ---
 import Layout from '../../layouts/Layout.astro'
-import { getCollection, render } from 'astro:content'
+import { getCollection, render, type CollectionEntry } from 'astro:content'
 import { format } from 'date-fns'
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts')
-  return posts.map((post) => ({
+  return posts.map((post: CollectionEntry<'posts'>) => ({
     params: { id: post.id },
     props: { post },
   }))
+}
+
+interface Props {
+  post: CollectionEntry<'posts'>
 }
 
 const { post } = Astro.props
