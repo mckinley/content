@@ -50,3 +50,12 @@ next-env.d.ts
 .contentlayer
 .velite
 
+
+# Cloudflare
+.wrangler/
+.dev.vars
+
+# Astro
+.astro/
+dist/
+!.env.development

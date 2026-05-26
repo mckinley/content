@@ -1,9 +1,5 @@
 # Claude Code Instructions
 
-## Git Policy
-
-**NEVER commit to git automatically.** The user will review changes and commit manually.
-
 ## Design Philosophy
 
 This is a technical demo site for scientists and developers. Maintain:

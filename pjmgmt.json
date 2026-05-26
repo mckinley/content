@@ -1,0 +1,12 @@
+{
+  "name": "content",
+  "status": "active",
+  "projects": [
+    {
+      "name": "content",
+      "path": ".",
+      "framework": "nextjs",
+      "packageManager": "bun"
+    }
+  ]
+}

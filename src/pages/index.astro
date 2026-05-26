@@ -1,0 +1,548 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { createReader } from '@keystatic/core/reader'
+import keystaticConfig from '../../keystatic.config'
+import { format, parseISO } from 'date-fns'
+import { getCollection, type CollectionEntry } from 'astro:content'
+import {
+  posts as velitePosts,
+  articles as veliteArticles,
+  siteConfig,
+  pages as velitePages,
+  htmlPages,
+  team,
+  navigation,
+  products,
+  hugoConfig,
+  jekyllPosts,
+} from '@/.velite'
+
+// Velite data is already available at build time
+
+// Keystatic data
+const reader = createReader(process.cwd(), keystaticConfig)
+const keystaticPosts = await reader.collections.posts.all()
+
+// Astro Content Collections
+const astroPosts = (await getCollection('posts')).sort(
+  (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+)
+---
+
+<Layout>
+  <div class="min-h-screen bg-white">
+    <!-- Header -->
+    <header class="border-b border-gray-200">
+      <div class="max-w-3xl mx-auto px-4 py-6">
+        <h1 class="text-2xl font-bold tracking-tight">Content Layer Systems</h1>
+        <p class="text-gray-600 mt-1">Comparing content management approaches</p>
+        <nav class="flex gap-4 mt-4 text-sm">
+          <a href="/keystatic" class="text-gray-600 hover:text-gray-900 underline">
+            Keystatic Admin
+          </a>
+          <span class="text-gray-300">&middot;</span>
+          <a href="/editorjs" class="text-gray-600 hover:text-gray-900 underline">
+            EditorJS Admin
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Table of Contents -->
+    <nav class="border-b border-gray-100 bg-gray-50">
+      <div class="max-w-3xl mx-auto px-4 py-3">
+        <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+          <a href="#velite" class="text-gray-600 hover:text-gray-900">Velite Posts</a>
+          <a href="#editorjs" class="text-gray-600 hover:text-gray-900">EditorJS</a>
+          <a href="#velite-advanced" class="text-gray-600 hover:text-gray-900">Advanced Velite</a>
+          <a href="#data-formats" class="text-gray-600 hover:text-gray-900">Data Formats</a>
+          <a href="#astro-cc" class="text-gray-600 hover:text-gray-900">Astro Collections</a>
+          <a href="#keystatic" class="text-gray-600 hover:text-gray-900">Keystatic</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-4 py-12">
+      <!-- Velite Posts -->
+      <section id="velite" class="mb-16">
+        <header class="mb-6 pb-4 border-b border-gray-200">
+          <h2 class="text-xl font-semibold tracking-tight">Velite</h2>
+          <p class="text-gray-600 mt-1 text-sm">Modern content loader with custom transformations</p>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {['Custom Loaders', 'Image Processing', 'Blur Placeholders', 'TOC Generation'].map((f) => (
+              <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">{f}</span>
+            ))}
+          </div>
+        </header>
+        <div class="space-y-4">
+          {velitePosts.map((post: (typeof velitePosts)[number]) => (
+            <article class="p-4 border border-gray-200 rounded-lg">
+              <div class="flex gap-4">
+                {post.cover && (
+                  <img
+                    src={post.cover.src}
+                    alt={post.title}
+                    width={100}
+                    height={66}
+                    class="rounded object-cover flex-shrink-0 grayscale hover:grayscale-0 transition-all"
+                    loading="lazy"
+                  />
+                )}
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-medium">{post.title}</h3>
+                  {(post.date || post.author) && (
+                    <div class="text-sm text-gray-500 mt-1">
+                      {post.date && format(parseISO(post.date), 'MMM d, yyyy')}
+                      {post.author && ` · ${post.author}`}
+                    </div>
+                  )}
+                  {post.description && <p class="text-gray-600 text-sm mt-1">{post.description}</p>}
+                </div>
+              </div>
+              <div
+                class="prose prose-sm prose-gray max-w-none mt-4 pt-4 border-t border-gray-100"
+                set:html={post.content}
+              />
+              {post.toc && post.toc.length > 0 && (
+                <details class="mt-4 pt-4 border-t border-gray-100">
+                  <summary class="cursor-pointer text-xs text-gray-400 hover:text-gray-600 uppercase tracking-wide">
+                    View JSON
+                  </summary>
+                  <pre class="mt-2 text-xs bg-gray-50 p-3 rounded overflow-auto max-h-40 font-mono">
+                    {JSON.stringify({ toc: post.toc, metadata: post.metadata }, null, 2)}
+                  </pre>
+                </details>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- EditorJS via Velite -->
+      <section id="editorjs" class="mb-16">
+        <header class="mb-6 pb-4 border-b border-gray-200">
+          <h2 class="text-xl font-semibold tracking-tight">EditorJS via Velite</h2>
+          <p class="text-gray-600 mt-1 text-sm">Block-based JSON content with custom parser</p>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {['Block Format', 'JSON Storage', 'Custom Parser', 'Metadata Files'].map((f) => (
+              <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">{f}</span>
+            ))}
+            <a
+              href="/editorjs"
+              class="text-xs px-2 py-1 bg-gray-900 text-white rounded hover:bg-gray-700"
+            >
+              Open Admin
+            </a>
+          </div>
+        </header>
+        <div class="space-y-4">
+          {veliteArticles.map((article: (typeof veliteArticles)[number]) => (
+            <article class="p-4 border border-gray-200 rounded-lg">
+              <div class="flex-1 min-w-0">
+                <h3 class="font-medium">{article.title}</h3>
+                <div class="text-sm text-gray-500 mt-1">
+                  {format(new Date(article.date), 'MMM d, yyyy')}
+                  {article.author && ` · ${article.author}`}
+                </div>
+                {article.description && (
+                  <p class="text-gray-600 text-sm mt-1">{article.description}</p>
+                )}
+              </div>
+              <div
+                class="prose prose-sm prose-gray max-w-none mt-4 pt-4 border-t border-gray-100"
+                set:html={article.content}
+              />
+              <details class="mt-4 pt-4 border-t border-gray-100">
+                <summary class="cursor-pointer text-xs text-gray-400 hover:text-gray-600 uppercase tracking-wide">
+                  View JSON
+                </summary>
+                <pre class="mt-2 text-xs bg-gray-50 p-3 rounded overflow-auto max-h-40 font-mono">
+                  {JSON.stringify(
+                    { slug: article.slug, tags: article.array, object: article.object },
+                    null,
+                    2
+                  )}
+                </pre>
+              </details>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- Advanced Velite Features -->
+      <section id="velite-advanced" class="mb-16">
+        <header class="mb-6 pb-4 border-b border-gray-200">
+          <h2 class="text-xl font-semibold tracking-tight">Advanced Velite Features</h2>
+          <p class="text-gray-600 mt-1 text-sm">
+            Custom loaders, single-file collections, and parent-child relationships
+          </p>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {['JSON5 Loader', 'HTML Loader', 'Single Collection', 'MDX Compilation', 'Parent-Child'].map(
+              (f) => (
+                <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">{f}</span>
+              )
+            )}
+          </div>
+        </header>
+        <div class="space-y-4">
+          <!-- Site Config -->
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <h3 class="font-medium">Site Configuration</h3>
+            <p class="text-sm text-gray-500 mt-1">Single-file collection from JSON5 with comments</p>
+            <div class="mt-3 bg-gray-50 p-3 rounded text-sm font-mono">
+              <div><span class="text-gray-500">name:</span> {siteConfig.name}</div>
+              <div><span class="text-gray-500">version:</span> {siteConfig.version}</div>
+              {siteConfig.description && (
+                <div><span class="text-gray-500">description:</span> {siteConfig.description}</div>
+              )}
+              <div>
+                <span class="text-gray-500">features:</span> {siteConfig.features.join(', ')}
+              </div>
+            </div>
+          </div>
+
+          <!-- MDX Pages -->
+          {velitePages.map((page: (typeof velitePages)[number]) => (
+            <article class="p-4 border border-gray-200 rounded-lg">
+              <div class="flex justify-between items-start">
+                <h3 class="font-medium">{page.title}</h3>
+                <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">MDX</span>
+              </div>
+              {page.description && <p class="text-gray-600 text-sm mt-1">{page.description}</p>}
+              <details class="mt-3">
+                <summary class="cursor-pointer text-xs text-gray-400 hover:text-gray-600 uppercase tracking-wide">
+                  Compiled MDX Code
+                </summary>
+                <pre class="mt-2 text-xs bg-gray-50 p-3 rounded overflow-auto max-h-32 font-mono">
+                  {page.code.substring(0, 500)}...
+                </pre>
+              </details>
+            </article>
+          ))}
+
+          <!-- HTML Pages -->
+          {htmlPages.map((page: (typeof htmlPages)[number]) => (
+            <article class="p-4 border border-gray-200 rounded-lg">
+              <div class="flex justify-between items-start">
+                <h3 class="font-medium">{page.title}</h3>
+                <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">HTML</span>
+              </div>
+              <div class="prose prose-sm prose-gray max-w-none mt-3" set:html={page.content} />
+            </article>
+          ))}
+
+          <!-- Parent-Child -->
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <h3 class="font-medium">Parent-Child Relationships</h3>
+            <p class="text-sm text-gray-500 mt-1">Posts can reference parent posts via parentSlug</p>
+            <div class="mt-3 space-y-2">
+              {velitePosts.map((post: (typeof velitePosts)[number]) => (
+                <div class="text-sm flex items-center gap-2">
+                  {post.parentSlug ? (
+                    <>
+                      <span class="text-gray-400">&mdash;</span>
+                      <span>{post.title}</span>
+                      <span class="text-xs text-gray-400">(child of {post.parentSlug})</span>
+                    </>
+                  ) : (
+                    <>
+                      <span class="text-gray-600">&bull;</span>
+                      <span class="font-medium">{post.title}</span>
+                      <span class="text-xs text-gray-400">(root)</span>
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Formats -->
+      <section id="data-formats" class="mb-16">
+        <header class="mb-6 pb-4 border-b border-gray-200">
+          <h2 class="text-xl font-semibold tracking-tight">Data Format Demos</h2>
+          <p class="text-gray-600 mt-1 text-sm">
+            Different file formats used for content storage in static site generators
+          </p>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {['YAML', 'CSV', 'TOML', 'Jekyll Filenames'].map((f) => (
+              <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">{f}</span>
+            ))}
+          </div>
+        </header>
+        <div class="space-y-4">
+          <!-- YAML Team Data -->
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <div class="flex justify-between items-start">
+              <h3 class="font-medium">Team Members (YAML)</h3>
+              <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">.yaml</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">
+              Structured data commonly stored in _data/ or data/ folders
+            </p>
+            <div class="mt-3 grid gap-3">
+              {team.members.map((member: (typeof team.members)[number]) => (
+                <div class="flex items-center gap-3 p-2 bg-gray-50 rounded">
+                  <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-sm">
+                    {member.name.charAt(0)}
+                  </div>
+                  <div>
+                    <div class="font-medium text-sm">{member.name}</div>
+                    <div class="text-xs text-gray-500">{member.role}</div>
+                  </div>
+                  {member.social && (
+                    <div class="ml-auto flex gap-2 text-xs text-gray-400">
+                      {member.social.github && <span>gh:{member.social.github}</span>}
+                      {member.social.twitter && <span>{member.social.twitter}</span>}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- YAML Navigation -->
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <div class="flex justify-between items-start">
+              <h3 class="font-medium">Site Navigation (YAML)</h3>
+              <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">.yaml</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">Hierarchical navigation with nested children</p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              {navigation.main.map((item: (typeof navigation.main)[number]) => (
+                <div class="text-sm">
+                  <span class="px-2 py-1 bg-gray-100 rounded">{item.label}</span>
+                  {item.children && (
+                    <span class="text-xs text-gray-400 ml-1">(+{item.children.length})</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- CSV Products -->
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <div class="flex justify-between items-start">
+              <h3 class="font-medium">Products Table (CSV)</h3>
+              <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">.csv</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">
+              Spreadsheet-like data for pricing, catalogs, etc.
+            </p>
+            <div class="mt-3 overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-gray-200">
+                    <th class="text-left py-2 pr-4 font-medium text-gray-600">Name</th>
+                    <th class="text-right py-2 pr-4 font-medium text-gray-600">Price</th>
+                    <th class="text-left py-2 pr-4 font-medium text-gray-600">Category</th>
+                    <th class="text-center py-2 font-medium text-gray-600">Stock</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.rows.slice(0, 5).map((row: (typeof products.rows)[number]) => (
+                    <tr class="border-b border-gray-100">
+                      <td class="py-2 pr-4">{row.name}</td>
+                      <td class="py-2 pr-4 text-right">${row.price}</td>
+                      <td class="py-2 pr-4 text-gray-500">{row.category}</td>
+                      <td class="py-2 text-center">
+                        {row.inStock === 'true' ? (
+                          <span class="text-green-600">&bull;</span>
+                        ) : (
+                          <span class="text-gray-300">&cir;</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {products.rows.length > 5 && (
+                <p class="text-xs text-gray-400 mt-2">+{products.rows.length - 5} more items</p>
+              )}
+            </div>
+          </div>
+
+          <!-- TOML Hugo Config -->
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <div class="flex justify-between items-start">
+              <h3 class="font-medium">Hugo Configuration (TOML)</h3>
+              <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">.toml</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">
+              Hugo-style site configuration - popular in Go/Rust ecosystems
+            </p>
+            <div class="mt-3 bg-gray-50 p-3 rounded text-sm font-mono">
+              <div><span class="text-gray-500">baseURL =</span> "{hugoConfig.baseURL}"</div>
+              <div><span class="text-gray-500">title =</span> "{hugoConfig.title}"</div>
+              <div>
+                <span class="text-gray-500">languageCode =</span> "{hugoConfig.languageCode}"
+              </div>
+              {hugoConfig.theme && (
+                <div><span class="text-gray-500">theme =</span> "{hugoConfig.theme}"</div>
+              )}
+              {hugoConfig.params && (
+                <div class="mt-2 pl-2 border-l-2 border-gray-200">
+                  <div class="text-gray-400">[params]</div>
+                  {hugoConfig.params.author && (
+                    <div>
+                      <span class="text-gray-500">author =</span> "{hugoConfig.params.author}"
+                    </div>
+                  )}
+                  {hugoConfig.params.showReadingTime !== undefined && (
+                    <div>
+                      <span class="text-gray-500">showReadingTime =</span>{' '}
+                      {String(hugoConfig.params.showReadingTime)}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <!-- Jekyll Posts -->
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <div class="flex justify-between items-start">
+              <h3 class="font-medium">Jekyll-Style Posts</h3>
+              <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
+                YYYY-MM-DD-slug.md
+              </span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">
+              Date extracted from filename - no frontmatter date needed
+            </p>
+            <div class="mt-3 space-y-3">
+              {jekyllPosts.map((post: (typeof jekyllPosts)[number]) => (
+                <div class="p-3 bg-gray-50 rounded">
+                  <div class="flex justify-between items-start">
+                    <h4 class="font-medium text-sm">{post.title}</h4>
+                    {post.date && (
+                      <span class="text-xs text-gray-500">
+                        {format(parseISO(post.date), 'MMM d, yyyy')}
+                      </span>
+                    )}
+                  </div>
+                  <div class="text-xs text-gray-500 mt-1 font-mono">{post.permalink}</div>
+                  {post.categories && post.categories.length > 0 && (
+                    <div class="flex gap-1 mt-2">
+                      {post.categories.map((cat: string) => (
+                        <span class="text-xs px-1.5 py-0.5 bg-gray-200 rounded">{cat}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Astro Content Collections -->
+      <section id="astro-cc" class="mb-16">
+        <header class="mb-6 pb-4 border-b border-gray-200">
+          <h2 class="text-xl font-semibold tracking-tight">Astro Content Collections</h2>
+          <p class="text-gray-600 mt-1 text-sm">
+            Built-in type-safe content management with Zod schemas
+          </p>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {['Built-in', 'Zod Schemas', 'Type Generation', 'Markdown/MDX'].map((f) => (
+              <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">{f}</span>
+            ))}
+          </div>
+        </header>
+        <div class="space-y-4">
+          {astroPosts.map((post: CollectionEntry<'posts'>) => (
+            <article class="p-4 border border-gray-200 rounded-lg">
+              <div class="flex justify-between items-start gap-4">
+                <h3 class="font-medium">
+                  <a href={`/posts/${post.id}`} class="hover:underline">
+                    {post.data.title}
+                  </a>
+                </h3>
+                {post.data.featured && (
+                  <span class="text-xs px-2 py-0.5 bg-gray-900 text-white rounded flex-shrink-0">
+                    featured
+                  </span>
+                )}
+              </div>
+              <div class="text-sm text-gray-500 mt-1">
+                {format(post.data.date, 'MMM d, yyyy')}
+                {post.data.author && ` · ${post.data.author}`}
+              </div>
+              {post.data.description && (
+                <p class="text-gray-600 text-sm mt-2">{post.data.description}</p>
+              )}
+              {post.data.tags && post.data.tags.length > 0 && (
+                <div class="flex flex-wrap gap-1 mt-3">
+                  {post.data.tags.map((tag: string) => (
+                    <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">{tag}</span>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- Keystatic -->
+      <section id="keystatic" class="mb-16">
+        <header class="mb-6 pb-4 border-b border-gray-200">
+          <h2 class="text-xl font-semibold tracking-tight">Keystatic</h2>
+          <p class="text-gray-600 mt-1 text-sm">Git-backed CMS with visual admin interface</p>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {['Admin UI', 'Git Storage', 'Markdoc', 'Live Preview'].map((f) => (
+              <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">{f}</span>
+            ))}
+            <a
+              href="/keystatic"
+              class="text-xs px-2 py-1 bg-gray-900 text-white rounded hover:bg-gray-700"
+            >
+              Open Admin
+            </a>
+          </div>
+        </header>
+        <div class="space-y-4">
+          {keystaticPosts.map((post) => (
+            <article class="p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors">
+              <div class="flex justify-between items-start gap-4">
+                <h3 class="font-medium">{String(post.entry.title)}</h3>
+                {post.entry.featured && (
+                  <span class="text-xs px-2 py-0.5 bg-gray-900 text-white rounded flex-shrink-0">
+                    featured
+                  </span>
+                )}
+              </div>
+              <div class="text-sm text-gray-500 mt-1">
+                {post.entry.publishedDate &&
+                  format(new Date(post.entry.publishedDate), 'MMM d, yyyy')}
+                {post.entry.author && ` · ${post.entry.author}`}
+              </div>
+              {post.entry.description && (
+                <p class="text-gray-600 text-sm mt-2">{post.entry.description}</p>
+              )}
+              {post.entry.tags && post.entry.tags.length > 0 && (
+                <div class="flex flex-wrap gap-1 mt-3">
+                  {post.entry.tags
+                    .filter((t): t is string => t !== null)
+                    .map((tag) => (
+                      <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
+                        {tag}
+                      </span>
+                    ))}
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 bg-gray-50">
+      <div class="max-w-3xl mx-auto px-4 py-6 text-sm text-gray-500">
+        <p>Astro 5 &middot; React 19 &middot; TypeScript</p>
+      </div>
+    </footer>
+  </div>
+</Layout>

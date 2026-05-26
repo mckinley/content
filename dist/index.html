@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Comparing Keystatic, Velite, Astro Content Collections, and EditorJS for content management"><title>Content Layer Systems Demo</title><link rel="stylesheet" href="/_astro/index.DGgzFdTB.css"></head> <body class="antialiased">  <div class="min-h-screen bg-white"> <!-- Header --> <header class="border-b border-gray-200"> <div class="max-w-3xl mx-auto px-4 py-6"> <h1 class="text-2xl font-bold tracking-tight">Content Layer Systems</h1> <p class="text-gray-600 mt-1">Comparing content management approaches</p> <nav class="flex gap-4 mt-4 text-sm"> <a href="/keystatic" class="text-gray-600 hover:text-gray-900 underline">
+Keystatic Admin
+</a> <span class="text-gray-300">&middot;</span> <a href="/editorjs" class="text-gray-600 hover:text-gray-900 underline">
+EditorJS Admin
+</a> </nav> </div> </header> <!-- Table of Contents --> <nav class="border-b border-gray-100 bg-gray-50"> <div class="max-w-3xl mx-auto px-4 py-3"> <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm"> <a href="#velite" class="text-gray-600 hover:text-gray-900">Velite Posts</a> <a href="#editorjs" class="text-gray-600 hover:text-gray-900">EditorJS</a> <a href="#velite-advanced" class="text-gray-600 hover:text-gray-900">Advanced Velite</a> <a href="#data-formats" class="text-gray-600 hover:text-gray-900">Data Formats</a> <a href="#astro-cc" class="text-gray-600 hover:text-gray-900">Astro Collections</a> <a href="#keystatic" class="text-gray-600 hover:text-gray-900">Keystatic</a> </div> </div> </nav> <!-- Main Content --> <main class="max-w-3xl mx-auto px-4 py-12"> <!-- Velite Posts --> <section id="velite" class="mb-16"> <header class="mb-6 pb-4 border-b border-gray-200"> <h2 class="text-xl font-semibold tracking-tight">Velite</h2> <p class="text-gray-600 mt-1 text-sm">Modern content loader with custom transformations</p> <div class="flex flex-wrap gap-2 mt-3"> <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Custom Loaders</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Image Processing</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Blur Placeholders</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">TOC Generation</span> </div> </header> <div class="space-y-4"> <article class="p-4 border border-gray-200 rounded-lg"> <div class="flex gap-4"> <img src="/static/cover-6ecc40c2.jpeg" alt="Introduction to Velite (Edited)" width="100" height="66" class="rounded object-cover flex-shrink-0 grayscale hover:grayscale-0 transition-all" loading="lazy"> <div class="flex-1 min-w-0"> <h3 class="font-medium">Introduction to Velite (Edited)</h3> <div class="text-sm text-gray-500 mt-1"> Dec 19, 2024  · Demo Author </div> <p class="text-gray-600 text-sm mt-1">A modern content layer for Next.js with powerful transformation capabilities</p> </div> </div> <div class="prose prose-sm prose-gray max-w-none mt-4 pt-4 border-t border-gray-100"><h1>What is Velite?</h1>
+<p>Velite is a modern content layer that transforms your markdown, MDX, and other content formats into type-safe data for your Next.js application. yes! Yas!</p>
+<h2>Key Features</h2>
+<ul>
+<li><strong>Custom Loaders</strong> - Support any file format</li>
+<li><strong>Image Processing</strong> - Automatic optimization and blur placeholders</li>
+<li><strong>Type Safety</strong> - Full TypeScript support</li>
+<li><strong>Flexible Schema</strong> - Define complex content structures</li>
+</ul>
+<h2>Getting Started</h2>
+<p>Install Velite and configure your collections:</p>
+<pre><code class="language-typescript">export default defineConfig({
+  collections: {
+    posts: {
+      pattern: 'posts/**/*.md',
+      schema: s.object({
+        title: s.string(),
+        date: s.isodate(),
+        content: s.markdown(),
+      }),
+    },
+  },
+})
+</code></pre>
+<h2>Image Handling</h2>
+<p>Velite automatically processes images:</p>
+<p>Images get blur placeholders and optimized paths.</p>
+<h2>Related Resources</h2>
+<p>Check out <a href="/static/plain-f0ef7081.txt">the documentation</a> for more details.</p></div> <details class="mt-4 pt-4 border-t border-gray-100"> <summary class="cursor-pointer text-xs text-gray-400 hover:text-gray-600 uppercase tracking-wide">
+View JSON
+</summary> <pre class="mt-2 text-xs bg-gray-50 p-3 rounded overflow-auto max-h-40 font-mono">
+
+                    {
+  &quot;toc&quot;: [
+    {
+      &quot;title&quot;: &quot;What is Velite?&quot;,
+      &quot;url&quot;: &quot;#what-is-velite&quot;,
+      &quot;items&quot;: [
+        {
+          &quot;title&quot;: &quot;Key Features&quot;,
+          &quot;url&quot;: &quot;#key-features&quot;,
+          &quot;items&quot;: []
+        },
+        {
+          &quot;title&quot;: &quot;Getting Started&quot;,
+          &quot;url&quot;: &quot;#getting-started&quot;,
+          &quot;items&quot;: []
+        },
+        {
+          &quot;title&quot;: &quot;Image Handling&quot;,
+          &quot;url&quot;: &quot;#image-handling&quot;,
+          &quot;items&quot;: []
+        },
+        {
+          &quot;title&quot;: &quot;Related Resources&quot;,
+          &quot;url&quot;: &quot;#related-resources&quot;,
+          &quot;items&quot;: []
+        }
+      ]
+    }
+  ],
+  &quot;metadata&quot;: {
+    &quot;readingTime&quot;: 1,
+    &quot;wordCount&quot;: 105
+  }
+}
+                  </pre> </details> </article><article class="p-4 border border-gray-200 rounded-lg"> <div class="flex gap-4"> <img src="/static/cover-6ecc40c2.jpeg" alt="Custom Loaders in Velite" width="100" height="66" class="rounded object-cover flex-shrink-0 grayscale hover:grayscale-0 transition-all" loading="lazy"> <div class="flex-1 min-w-0"> <h3 class="font-medium">Custom Loaders in Velite</h3> <div class="text-sm text-gray-500 mt-1"> Dec 21, 2024  · Demo Author </div> <p class="text-gray-600 text-sm mt-1">Building custom file loaders for non-standard content formats</p> </div> </div> <div class="prose prose-sm prose-gray max-w-none mt-4 pt-4 border-t border-gray-100"><h1>Custom Content Loaders</h1>
+<p>Velite allows you to define custom loaders for any file format. This demo uses a custom EditorJS loader.</p>
+<h2>Defining a Loader</h2>
+<pre><code class="language-typescript">const customLoader = defineLoader({
+  test: /\.custom$/,
+  load: (vfile) => {
+    const data = parseCustomFormat(vfile.toString())
+    return { data }
+  },
+})
+</code></pre>
+<h2>Loader Components</h2>
+<p>Each loader needs:</p>
+<ul>
+<li><strong>test</strong> - Regex pattern to match files</li>
+<li><strong>load</strong> - Function to transform content</li>
+</ul>
+<h2>EditorJS Example</h2>
+<p>The EditorJS loader in this project:</p>
+<ol>
+<li>Matches <code>.editorjs</code> files</li>
+<li>Parses JSON block format</li>
+<li>Converts to HTML using <code>editorjs-html</code></li>
+<li>Reads companion <code>.meta.json</code> for metadata</li>
+</ol>
+<h2>Configuration</h2>
+<p>Add loaders to your Velite config:</p>
+<pre><code class="language-typescript">export default defineConfig({
+  loaders: [editorjsLoader],
+  collections: { ... }
+})
+</code></pre>
+<p><img src="/static/img-dddbeeec.jpg" alt="Velite processes content at build time"></p>
+<p>This approach enables support for any content format while maintaining type safety.</p></div> <details class="mt-4 pt-4 border-t border-gray-100"> <summary class="cursor-pointer text-xs text-gray-400 hover:text-gray-600 uppercase tracking-wide">
+View JSON
+</summary> <pre class="mt-2 text-xs bg-gray-50 p-3 rounded overflow-auto max-h-40 font-mono">
+
+                    {
+  &quot;toc&quot;: [
+    {
+      &quot;title&quot;: &quot;Custom Content Loaders&quot;,
+      &quot;url&quot;: &quot;#custom-content-loaders&quot;,
+      &quot;items&quot;: [
+        {
+          &quot;title&quot;: &quot;Defining a Loader&quot;,
+          &quot;url&quot;: &quot;#defining-a-loader&quot;,
+          &quot;items&quot;: []
+        },
+        {
+          &quot;title&quot;: &quot;Loader Components&quot;,
+          &quot;url&quot;: &quot;#loader-components&quot;,
+          &quot;items&quot;: []
+        },
+        {
+          &quot;title&quot;: &quot;EditorJS Example&quot;,
+          &quot;url&quot;: &quot;#editorjs-example&quot;,
+          &quot;items&quot;: []
+        },
+        {
+          &quot;title&quot;: &quot;Configuration&quot;,
+          &quot;url&quot;: &quot;#configuration&quot;,
+          &quot;items&quot;: []
+        }
+      ]
+    }
+  ],
+  &quot;metadata&quot;: {
+    &quot;readingTime&quot;: 1,
+    &quot;wordCount&quot;: 106
+  }
+}
+                  </pre> </details> </article> </div> </section> <!-- EditorJS via Velite --> <section id="editorjs" class="mb-16"> <header class="mb-6 pb-4 border-b border-gray-200"> <h2 class="text-xl font-semibold tracking-tight">EditorJS via Velite</h2> <p class="text-gray-600 mt-1 text-sm">Block-based JSON content with custom parser</p> <div class="flex flex-wrap gap-2 mt-3"> <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Block Format</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">JSON Storage</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Custom Parser</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Metadata Files</span> <a href="/editorjs" class="text-xs px-2 py-1 bg-gray-900 text-white rounded hover:bg-gray-700">
+Open Admin
+</a> </div> </header> <div class="space-y-4">  </div> </section> <!-- Advanced Velite Features --> <section id="velite-advanced" class="mb-16"> <header class="mb-6 pb-4 border-b border-gray-200"> <h2 class="text-xl font-semibold tracking-tight">Advanced Velite Features</h2> <p class="text-gray-600 mt-1 text-sm">
+Custom loaders, single-file collections, and parent-child relationships
+</p> <div class="flex flex-wrap gap-2 mt-3"> <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">JSON5 Loader</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">HTML Loader</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Single Collection</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">MDX Compilation</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Parent-Child</span> </div> </header> <div class="space-y-4"> <!-- Site Config --> <div class="p-4 border border-gray-200 rounded-lg"> <h3 class="font-medium">Site Configuration</h3> <p class="text-sm text-gray-500 mt-1">Single-file collection from JSON5 with comments</p> <div class="mt-3 bg-gray-50 p-3 rounded text-sm font-mono"> <div><span class="text-gray-500">name:</span> Content Layer Demo</div> <div><span class="text-gray-500">version:</span> 1.0.0</div> <div><span class="text-gray-500">description:</span> A technical demo comparing content management approaches in Next.js</div> <div> <span class="text-gray-500">features:</span> velite, contentlayer, keystatic, editorjs </div> </div> </div> <!-- MDX Pages --> <article class="p-4 border border-gray-200 rounded-lg"> <div class="flex justify-between items-start"> <h3 class="font-medium">Velite Features Overview</h3> <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">MDX</span> </div> <p class="text-gray-600 text-sm mt-1">An overview of velite&#39;s key capabilities</p> <details class="mt-3"> <summary class="cursor-pointer text-xs text-gray-400 hover:text-gray-600 uppercase tracking-wide">
+Compiled MDX Code
+</summary> <pre class="mt-2 text-xs bg-gray-50 p-3 rounded overflow-auto max-h-32 font-mono">                  const{Fragment:e,jsx:n,jsxs:t}=arguments[0];function _createMdxContent(r){const i={code:&quot;code&quot;,h1:&quot;h1&quot;,h2:&quot;h2&quot;,li:&quot;li&quot;,p:&quot;p&quot;,pre:&quot;pre&quot;,strong:&quot;strong&quot;,ul:&quot;ul&quot;,...r.components};return t(e,{children:[n(i.h1,{children:&quot;Velite Features&quot;}),&quot;\n&quot;,n(i.p,{children:&quot;Velite is a powerful content layer that transforms your content into type-safe data.&quot;}),&quot;\n&quot;,n(i.h2,{children:&quot;Key Capabilities&quot;}),&quot;\n&quot;,t(i.ul,{children:[&quot;\n&quot;,t(i.li,{children:[n(i.strong,{children:&quot;Custom Loaders&quot;}),&quot; - Support any file forma...
+                </pre> </details> </article> <!-- HTML Pages --> <article class="p-4 border border-gray-200 rounded-lg"> <div class="flex justify-between items-start"> <h3 class="font-medium">About This Demo</h3> <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">HTML</span> </div> <div class="prose prose-sm prose-gray max-w-none mt-3"><h1>About the Content Layer Demo</h1>
+
+<p>This project demonstrates different content management approaches in Next.js:</p>
+
+<ul>
+  <li><strong>Velite</strong> - Modern content layer with custom loaders</li>
+  <li><strong>Contentlayer</strong> - Type-safe content with generated types</li>
+  <li><strong>Keystatic</strong> - Git-backed CMS with admin UI</li>
+  <li><strong>EditorJS</strong> - Block-based JSON content</li>
+</ul>
+
+<p>Each approach has its strengths and is suited for different use cases.</p>
+
+<h2>HTML with Sidecar Metadata</h2>
+
+<p>
+  This page demonstrates how the CMS uses sidecar <code>.meta.json</code> files for HTML content.
+  Each HTML file like <code>about.html</code> has a corresponding <code>about.meta.json</code> file
+  containing structured metadata like title, slug, and other fields.
+</p>
+</div> </article> <!-- Parent-Child --> <div class="p-4 border border-gray-200 rounded-lg"> <h3 class="font-medium">Parent-Child Relationships</h3> <p class="text-sm text-gray-500 mt-1">Posts can reference parent posts via parentSlug</p> <div class="mt-3 space-y-2"> <div class="text-sm flex items-center gap-2">  <span class="text-gray-600">&bull;</span> <span class="font-medium">Introduction to Velite (Edited)</span> <span class="text-xs text-gray-400">(root)</span>  </div><div class="text-sm flex items-center gap-2">  <span class="text-gray-400">&mdash;</span> <span>Custom Loaders in Velite</span> <span class="text-xs text-gray-400">(child of posts/post-01)</span>  </div> </div> </div> </div> </section> <!-- Data Formats --> <section id="data-formats" class="mb-16"> <header class="mb-6 pb-4 border-b border-gray-200"> <h2 class="text-xl font-semibold tracking-tight">Data Format Demos</h2> <p class="text-gray-600 mt-1 text-sm">
+Different file formats used for content storage in static site generators
+</p> <div class="flex flex-wrap gap-2 mt-3"> <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">YAML</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">CSV</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">TOML</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Jekyll Filenames</span> </div> </header> <div class="space-y-4"> <!-- YAML Team Data --> <div class="p-4 border border-gray-200 rounded-lg"> <div class="flex justify-between items-start"> <h3 class="font-medium">Team Members (YAML)</h3> <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">.yaml</span> </div> <p class="text-sm text-gray-500 mt-1">
+Structured data commonly stored in _data/ or data/ folders
+</p> <div class="mt-3 grid gap-3"> <div class="flex items-center gap-3 p-2 bg-gray-50 rounded"> <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-sm"> A </div> <div> <div class="font-medium text-sm">Alice Chen</div> <div class="text-xs text-gray-500">Lead Developer</div> </div> <div class="ml-auto flex gap-2 text-xs text-gray-400"> <span>gh:alicechen</span> <span>@alicedev</span> </div> </div><div class="flex items-center gap-3 p-2 bg-gray-50 rounded"> <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-sm"> B </div> <div> <div class="font-medium text-sm">Bob Martinez</div> <div class="text-xs text-gray-500">Content Strategist</div> </div> <div class="ml-auto flex gap-2 text-xs text-gray-400">  <span>@bobcontent</span> </div> </div><div class="flex items-center gap-3 p-2 bg-gray-50 rounded"> <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-sm"> C </div> <div> <div class="font-medium text-sm">Carol Williams</div> <div class="text-xs text-gray-500">UX Designer</div> </div> <div class="ml-auto flex gap-2 text-xs text-gray-400"> <span>gh:carolux</span>  </div> </div> </div> </div> <!-- YAML Navigation --> <div class="p-4 border border-gray-200 rounded-lg"> <div class="flex justify-between items-start"> <h3 class="font-medium">Site Navigation (YAML)</h3> <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">.yaml</span> </div> <p class="text-sm text-gray-500 mt-1">Hierarchical navigation with nested children</p> <div class="mt-3 flex flex-wrap gap-2"> <div class="text-sm"> <span class="px-2 py-1 bg-gray-100 rounded">Home</span>  </div><div class="text-sm"> <span class="px-2 py-1 bg-gray-100 rounded">Products</span> <span class="text-xs text-gray-400 ml-1">(+3)</span> </div><div class="text-sm"> <span class="px-2 py-1 bg-gray-100 rounded">Documentation</span> <span class="text-xs text-gray-400 ml-1">(+3)</span> </div><div class="text-sm"> <span class="px-2 py-1 bg-gray-100 rounded">Blog</span>  </div><div class="text-sm"> <span class="px-2 py-1 bg-gray-100 rounded">About</span>  </div> </div> </div> <!-- CSV Products --> <div class="p-4 border border-gray-200 rounded-lg"> <div class="flex justify-between items-start"> <h3 class="font-medium">Products Table (CSV)</h3> <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">.csv</span> </div> <p class="text-sm text-gray-500 mt-1">
+Spreadsheet-like data for pricing, catalogs, etc.
+</p> <div class="mt-3 overflow-x-auto"> <table class="w-full text-sm"> <thead> <tr class="border-b border-gray-200"> <th class="text-left py-2 pr-4 font-medium text-gray-600">Name</th> <th class="text-right py-2 pr-4 font-medium text-gray-600">Price</th> <th class="text-left py-2 pr-4 font-medium text-gray-600">Category</th> <th class="text-center py-2 font-medium text-gray-600">Stock</th> </tr> </thead> <tbody> <tr class="border-b border-gray-100"> <td class="py-2 pr-4">Wireless Keyboard</td> <td class="py-2 pr-4 text-right">$79.99</td> <td class="py-2 pr-4 text-gray-500">Electronics</td> <td class="py-2 text-center"> <span class="text-green-600">&bull;</span> </td> </tr><tr class="border-b border-gray-100"> <td class="py-2 pr-4">USB-C Hub</td> <td class="py-2 pr-4 text-right">$49.99</td> <td class="py-2 pr-4 text-gray-500">Electronics</td> <td class="py-2 text-center"> <span class="text-green-600">&bull;</span> </td> </tr><tr class="border-b border-gray-100"> <td class="py-2 pr-4">Mechanical Keyboard</td> <td class="py-2 pr-4 text-right">$149.99</td> <td class="py-2 pr-4 text-gray-500">Electronics</td> <td class="py-2 text-center"> <span class="text-gray-300">&cir;</span> </td> </tr><tr class="border-b border-gray-100"> <td class="py-2 pr-4">Monitor Stand</td> <td class="py-2 pr-4 text-right">$34.99</td> <td class="py-2 pr-4 text-gray-500">Accessories</td> <td class="py-2 text-center"> <span class="text-green-600">&bull;</span> </td> </tr><tr class="border-b border-gray-100"> <td class="py-2 pr-4">Webcam HD</td> <td class="py-2 pr-4 text-right">$89.99</td> <td class="py-2 pr-4 text-gray-500">Electronics</td> <td class="py-2 text-center"> <span class="text-green-600">&bull;</span> </td> </tr> </tbody> </table> <p class="text-xs text-gray-400 mt-2">+3 more items</p> </div> </div> <!-- TOML Hugo Config --> <div class="p-4 border border-gray-200 rounded-lg"> <div class="flex justify-between items-start"> <h3 class="font-medium">Hugo Configuration (TOML)</h3> <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">.toml</span> </div> <p class="text-sm text-gray-500 mt-1">
+Hugo-style site configuration - popular in Go/Rust ecosystems
+</p> <div class="mt-3 bg-gray-50 p-3 rounded text-sm font-mono"> <div><span class="text-gray-500">baseURL =</span> "https://example.com/"</div> <div><span class="text-gray-500">title =</span> "My Hugo Site"</div> <div> <span class="text-gray-500">languageCode =</span> "en-us"
+</div> <div><span class="text-gray-500">theme =</span> "ananke"</div> <div class="mt-2 pl-2 border-l-2 border-gray-200"> <div class="text-gray-400">[params]</div> <div> <span class="text-gray-500">author =</span> "Site Author"
+</div> <div> <span class="text-gray-500">showReadingTime =</span>  true </div> </div> </div> </div> <!-- Jekyll Posts --> <div class="p-4 border border-gray-200 rounded-lg"> <div class="flex justify-between items-start"> <h3 class="font-medium">Jekyll-Style Posts</h3> <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
+YYYY-MM-DD-slug.md
+</span> </div> <p class="text-sm text-gray-500 mt-1">
+Date extracted from filename - no frontmatter date needed
+</p> <div class="mt-3 space-y-3"> <div class="p-3 bg-gray-50 rounded"> <div class="flex justify-between items-start"> <h4 class="font-medium text-sm">Getting Started with Jekyll</h4> <span class="text-xs text-gray-500"> Jan 15, 2024 </span> </div> <div class="text-xs text-gray-500 mt-1 font-mono">/blog/2024/01/15/getting-started-with-jekyll</div> <div class="flex gap-1 mt-2"> <span class="text-xs px-1.5 py-0.5 bg-gray-200 rounded">tutorials</span><span class="text-xs px-1.5 py-0.5 bg-gray-200 rounded">jekyll</span> </div> </div><div class="p-3 bg-gray-50 rounded"> <div class="flex justify-between items-start"> <h4 class="font-medium text-sm">Advanced Jekyll Features</h4> <span class="text-xs text-gray-500"> Feb 10, 2024 </span> </div> <div class="text-xs text-gray-500 mt-1 font-mono">/blog/2024/02/10/advanced-jekyll-features</div> <div class="flex gap-1 mt-2"> <span class="text-xs px-1.5 py-0.5 bg-gray-200 rounded">tutorials</span><span class="text-xs px-1.5 py-0.5 bg-gray-200 rounded">jekyll</span> </div> </div> </div> </div> </div> </section> <!-- Astro Content Collections --> <section id="astro-cc" class="mb-16"> <header class="mb-6 pb-4 border-b border-gray-200"> <h2 class="text-xl font-semibold tracking-tight">Astro Content Collections</h2> <p class="text-gray-600 mt-1 text-sm">
+Built-in type-safe content management with Zod schemas
+</p> <div class="flex flex-wrap gap-2 mt-3"> <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Built-in</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Zod Schemas</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Type Generation</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Markdown/MDX</span> </div> </header> <div class="space-y-4"> <article class="p-4 border border-gray-200 rounded-lg"> <div class="flex justify-between items-start gap-4"> <h3 class="font-medium"> <a href="/posts/getting-started-with-astro" class="hover:underline"> Getting Started with Astro Content Collections </a> </h3> <span class="text-xs px-2 py-0.5 bg-gray-900 text-white rounded flex-shrink-0">
+featured
+</span> </div> <div class="text-sm text-gray-500 mt-1"> Mar 19, 2025  · Demo Author </div> <p class="text-gray-600 text-sm mt-2">How to use Astro&#39;s built-in content collections for type-safe content management</p> <div class="flex flex-wrap gap-1 mt-3"> <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">astro</span><span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">content</span><span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">typescript</span> </div> </article><article class="p-4 border border-gray-200 rounded-lg"> <div class="flex justify-between items-start gap-4"> <h3 class="font-medium"> <a href="/posts/comparing-content-layers" class="hover:underline"> Comparing Content Layer Approaches </a> </h3>  </div> <div class="text-sm text-gray-500 mt-1"> Mar 14, 2025  · Demo Author </div> <p class="text-gray-600 text-sm mt-2">A comparison of Velite, Keystatic, and Astro Content Collections for static site content</p> <div class="flex flex-wrap gap-1 mt-3"> <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">comparison</span><span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">velite</span><span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">keystatic</span><span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">astro</span> </div> </article><article class="p-4 border border-gray-200 rounded-lg"> <div class="flex justify-between items-start gap-4"> <h3 class="font-medium"> <a href="/posts/custom-loaders-demo" class="hover:underline"> Custom Content Loaders </a> </h3>  </div> <div class="text-sm text-gray-500 mt-1"> Mar 9, 2025  · Demo Author </div> <p class="text-gray-600 text-sm mt-2">Demonstrating how different content systems handle non-standard file formats</p> <div class="flex flex-wrap gap-1 mt-3"> <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">loaders</span><span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">velite</span><span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">formats</span> </div> </article> </div> </section> <!-- Keystatic --> <section id="keystatic" class="mb-16"> <header class="mb-6 pb-4 border-b border-gray-200"> <h2 class="text-xl font-semibold tracking-tight">Keystatic</h2> <p class="text-gray-600 mt-1 text-sm">Git-backed CMS with visual admin interface</p> <div class="flex flex-wrap gap-2 mt-3"> <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Admin UI</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Git Storage</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Markdoc</span><span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">Live Preview</span> <a href="/keystatic" class="text-xs px-2 py-1 bg-gray-900 text-white rounded hover:bg-gray-700">
+Open Admin
+</a> </div> </header> <div class="space-y-4"> <article class="p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors"> <div class="flex justify-between items-start gap-4"> <h3 class="font-medium">another-post</h3>  </div> <div class="text-sm text-gray-500 mt-1"> Dec 22, 2024  · Demo Author </div> <p class="text-gray-600 text-sm mt-2">Understanding how Keystatic manages content with Git</p> <div class="flex flex-wrap gap-1 mt-3"> <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded"> keystatic </span><span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded"> git </span><span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded"> workflow </span> </div> </article><article class="p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors"> <div class="flex justify-between items-start gap-4"> <h3 class="font-medium">keystatic-features</h3> <span class="text-xs px-2 py-0.5 bg-gray-900 text-white rounded flex-shrink-0">
+featured
+</span> </div> <div class="text-sm text-gray-500 mt-1"> Dec 25, 2024  · Demo Author </div> <p class="text-gray-600 text-sm mt-2">Demonstrating Keystatic&#39;s powerful CMS features with a visual admin interface</p> <div class="flex flex-wrap gap-1 mt-3"> <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded"> keystatic </span><span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded"> cms </span><span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded"> git-backed </span> </div> </article><article class="p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors"> <div class="flex justify-between items-start gap-4"> <h3 class="font-medium">this-is-a-post</h3> <span class="text-xs px-2 py-0.5 bg-gray-900 text-white rounded flex-shrink-0">
+featured
+</span> </div> <div class="text-sm text-gray-500 mt-1"> Dec 19, 2024  · Demo Author </div> <p class="text-gray-600 text-sm mt-2">An introduction to Keystatic and its admin interface</p> <div class="flex flex-wrap gap-1 mt-3"> <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded"> keystatic </span><span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded"> introduction </span><span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded"> admin </span> </div> </article> </div> </section> </main> <!-- Footer --> <footer class="border-t border-gray-200 bg-gray-50"> <div class="max-w-3xl mx-auto px-4 py-6 text-sm text-gray-500"> <p>Astro 5 &middot; React 19 &middot; TypeScript</p> </div> </footer> </div>  </body></html>
