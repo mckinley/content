@@ -266,6 +266,26 @@ Content systems generate files during build:
 
 These are gitignored and regenerated on each build.
 
+## cntmgmt live preview
+
+This site is cntmgmt's test site for the live preview (design 04 paths 1 and 2), with the
+`@cntmgmt/astro` helper vendored in `src/lib/cntmgmt/`.
+
+- **Path 1, on the site:** `https://content.cntmgmt.com/cntmgmt-preview/<token>/` (home page)
+  and `…/posts/<id>` render the Astro posts (`src/content/posts/*.md`) with the editor's drafts,
+  Markdown rendered on request (`src/pages/cntmgmt-preview/[...path].astro`, `src/lib/posts.ts`).
+- **Path 2, a separate deployment:** the same site built with `CNTMGMT_PREVIEW_DEPLOYMENT=1`
+  renders every page on request: the Worker `content-preview` on
+  `https://preview.content.cntmgmt.com/<token>/…` (`wrangler deploy --env preview`, second step of
+  the deploy workflow). Switch `site.preview.url` in `cntmgmt.config.json` to it to test path 2.
+- **Velite, Keystatic and the other collections show as built.** They need a build step, so
+  their drafts belong to the build preview (path 3), not to these paths.
+- Locally: run cntmgmt's stub preview API (`packages/astro/test/stub-server.ts`) and put
+  `CNTMGMT_ENDPOINT=http://127.0.0.1:<port>` in `.dev.vars`; `wrangler dev` serves the built Worker
+  (`--env preview` for path 2).
+- The EditorJS demo and Keystatic's admin write local files, so they work under `astro dev` only;
+  the deployed Workers answer 404 for them.
+
 ## License
 
 MIT
