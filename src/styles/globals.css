@@ -1,6 +1,9 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 
+/* The vendored cntmgmt preview helper has no markup of its own; its words aren't classes */
+@source not '../lib/cntmgmt';
+
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

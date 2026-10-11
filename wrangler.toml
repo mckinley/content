@@ -1,9 +1,18 @@
 name = "content"
+main = "./dist/_worker.js/index.js"
 compatibility_date = "2025-03-28"
+compatibility_flags = ["nodejs_compat"]
 
 [assets]
+binding = "ASSETS"
 directory = "./dist"
 
 [[routes]]
 pattern = "content.cntmgmt.com"
 custom_domain = true
+
+# The cntmgmt preview deployment (design 04 path 2): built with CNTMGMT_PREVIEW_DEPLOYMENT=1 and
+# deployed with `wrangler deploy --env preview`.
+[env.preview]
+name = "content-preview"
+routes = [{ pattern = "preview.content.cntmgmt.com", custom_domain = true }]

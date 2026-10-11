@@ -1,38 +1,24 @@
 ---
-import Layout from '../../layouts/Layout.astro'
-import { getCollection, render, type CollectionEntry } from 'astro:content'
-import { format } from 'date-fns'
+import NotFoundView from '../../components/NotFoundView.astro'
+import PostView from '../../components/PostView.astro'
+import { getCollection, type CollectionEntry } from 'astro:content'
+import { getPreview } from '../../lib/cntmgmt'
+import { draftProblem, getPosts } from '../../lib/posts'
 
+// Prerendered on the site; rendered on request (with drafts) on the preview deployment.
 export async function getStaticPaths() {
-  const posts = await getCollection('posts')
-  return posts.map((post: CollectionEntry<'posts'>) => ({
+  return (await getCollection('posts')).map((post: CollectionEntry<'posts'>) => ({
     params: { id: post.id },
-    props: { post },
   }))
 }
 
-interface Props {
-  post: CollectionEntry<'posts'>
-}
-
-const { post } = Astro.props
-const { Content } = await render(post)
+const posts = await getPosts(Astro.locals).catch((e: unknown) =>
+  draftProblem(e, getPreview(Astro.locals)?.endpoint)
+)
+if (posts instanceof Response) return posts
+const { id } = Astro.params as { id?: string }
+const post = posts.find((p) => p.id === id)
+if (!post) Astro.response.status = 404
 ---
 
-<Layout title={post.data.title}>
-  <article class="mx-auto max-w-xl py-8 px-4">
-    <div class="mb-4">
-      <a href="/" class="text-sm text-gray-500 hover:text-gray-900 underline">&larr; Back</a>
-    </div>
-    <div class="mb-8 text-center">
-      <time datetime={post.data.date.toISOString()} class="mb-1 text-xs text-gray-600">
-        {format(post.data.date, 'LLLL d, yyyy')}
-      </time>
-      <h1 class="text-3xl font-bold">{post.data.title}</h1>
-      {post.data.author && <p class="text-gray-500 mt-2">{post.data.author}</p>}
-    </div>
-    <div class="prose prose-gray max-w-none">
-      <Content />
-    </div>
-  </article>
-</Layout>
+{post ? <PostView post={post} /> : <NotFoundView />}

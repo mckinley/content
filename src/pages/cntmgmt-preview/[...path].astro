@@ -1,0 +1,32 @@
+---
+// cntmgmt live preview on the site itself (design 04 path 1): / and /posts/<id>, rendered from
+// the published posts plus the drafts the middleware loaded for this link.
+import HomeView from '../../components/HomeView.astro'
+import NotFoundView from '../../components/NotFoundView.astro'
+import PostView from '../../components/PostView.astro'
+import { getPreview } from '../../lib/cntmgmt'
+import { keystaticPosts } from '../../lib/keystatic'
+import { draftProblem, getPosts } from '../../lib/posts'
+
+export const prerender = false
+
+const preview = getPreview(Astro.locals)
+if (!preview) return new Response(null, { status: 404 })
+
+const posts = await getPosts(Astro.locals).catch((e: unknown) => draftProblem(e, preview.endpoint))
+if (posts instanceof Response) return posts
+const home = preview.path === '/'
+const id = /^\/posts\/([^/]+)\/?$/.exec(preview.path)?.[1]
+const post = id ? posts.find((p) => p.id === decodeURIComponent(id)) : undefined
+if (!home && !post) Astro.response.status = 404
+---
+
+{
+  home ? (
+    <HomeView astroPosts={posts} keystaticPosts={keystaticPosts()} />
+  ) : post ? (
+    <PostView post={post} />
+  ) : (
+    <NotFoundView />
+  )
+}

@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro'
 import fs from 'node:fs'
 import path from 'node:path'
+import { isPreviewRequest, previewDisabledResponse } from '../../lib/cntmgmt'
 
 const ARTICLES_DIR = path.join(process.cwd(), 'content/velite/articles')
 
@@ -35,7 +36,12 @@ export const GET: APIRoute = async ({ url }) => {
   return new Response(JSON.stringify({ articles }))
 }
 
+// Nothing is saved from a cntmgmt preview
+const fromPreview = (request: Request) =>
+  isPreviewRequest(request, { deployment: __CNTMGMT_PREVIEW_DEPLOYMENT__ })
+
 export const POST: APIRoute = async ({ request }) => {
+  if (fromPreview(request)) return previewDisabledResponse()
   try {
     const { slug, content, meta } = await request.json()
     if (!slug) {
@@ -56,7 +62,8 @@ export const POST: APIRoute = async ({ request }) => {
   }
 }
 
-export const DELETE: APIRoute = async ({ url }) => {
+export const DELETE: APIRoute = async ({ request, url }) => {
+  if (fromPreview(request)) return previewDisabledResponse()
   const slug = url.searchParams.get('slug')
   if (!slug) {
     return new Response(JSON.stringify({ error: 'Slug is required' }), { status: 400 })
