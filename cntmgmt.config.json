@@ -1,4 +1,11 @@
 {
+  "site": {
+    "productionUrl": "https://content.cntmgmt.com",
+    "preview": {
+      "mode": "live",
+      "url": "https://content.cntmgmt.com/cntmgmt-preview"
+    }
+  },
   "collections": [
     {
       "name": "posts",
@@ -204,6 +211,42 @@
           "type": "boolean",
           "label": "Featured"
         }
+      }
+    },
+    {
+      "name": "astroPosts",
+      "label": "Astro posts",
+      "path": "src/content/posts",
+      "format": "md",
+      "source": "manual",
+      "schema": {
+        "title": {
+          "type": "text",
+          "label": "Title"
+        },
+        "date": {
+          "type": "date",
+          "label": "Date"
+        },
+        "description": {
+          "type": "text",
+          "label": "Description"
+        },
+        "author": {
+          "type": "text",
+          "label": "Author"
+        },
+        "tags": {
+          "type": "array",
+          "label": "Tags"
+        },
+        "featured": {
+          "type": "boolean",
+          "label": "Featured"
+        }
+      },
+      "preview": {
+        "path": "/posts/{key}/"
       }
     }
   ],
