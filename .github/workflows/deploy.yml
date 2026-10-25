@@ -16,7 +16,6 @@ jobs:
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy
       # The cntmgmt preview deployment (design 04 path 2): the same site with every page rendered
       # on request, as the Worker content-preview on preview.content.cntmgmt.com.
@@ -27,5 +26,4 @@ jobs:
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy --env preview

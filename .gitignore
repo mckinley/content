@@ -36,8 +36,14 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# Secrets: never commit. Dev defaults and blank examples are committed (pjmgmt env-vars standard).
+.env
+.env.*
+.dev.vars
+.dev.vars.*
+!.env.development
+!.env.example
+!.dev.vars.example
 
 # vercel
 .vercel
@@ -50,12 +56,9 @@ next-env.d.ts
 .contentlayer
 .velite
 
-
 # Cloudflare
 .wrangler/
-.dev.vars
 
 # Astro
 .astro/
 dist/
-!.env.development
