@@ -24,3 +24,9 @@ This project demonstrates 4 content layer approaches:
 
 - Keystatic: `/keystatic`
 - EditorJS: `/admin/editorjs`
+
+## Search
+
+The site is a demo, so it stays out of search engines: `src/layouts/Layout.astro` sends `<meta name="robots" content="noindex">` on every page, and it has no sitemap or canonical tags on purpose (pjmgmt's canonical-urls standard is n/a here). Keep `robots.txt` open, or crawlers can't see the noindex.
+
+This project is tracked in the pjmgmt HQ: mckinley/pjmgmt, hq/projects/content-management.md.
