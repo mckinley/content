@@ -1,8 +1,8 @@
 name: Deploy
 
+# Called by ci.yml once its checks pass, for a push to main (pjmgmt deploy-gate standard).
 on:
-  push:
-    branches: [main]
+  workflow_call:
 
 jobs:
   deploy:
