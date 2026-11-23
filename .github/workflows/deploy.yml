@@ -11,19 +11,22 @@ jobs:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
       - run: bun install
+      # The build writes dist/server/wrangler.json, which `wrangler deploy` reads through
+      # .wrangler/deploy/config.json (Astro's Cloudflare adapter 13+).
       - run: bun run build
-      - run: echo "_worker.js" > dist/.assetsignore
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           command: deploy
       # The cntmgmt preview deployment (design 04 path 2): the same site with every page rendered
       # on request, as the Worker content-preview on preview.content.cntmgmt.com.
+      # Since Astro 6 the Cloudflare environment is picked at build time (CLOUDFLARE_ENV), and
+      # the plain `wrangler deploy` then deploys that build.
       - run: bun run build
         env:
           CNTMGMT_PREVIEW_DEPLOYMENT: '1'
-      - run: echo "_worker.js" > dist/.assetsignore
+          CLOUDFLARE_ENV: preview
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: deploy --env preview
+          command: deploy
